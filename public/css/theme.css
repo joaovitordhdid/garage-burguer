@@ -1,0 +1,89 @@
+/* Garage Burger: tokens de design compartilhados (cardápio, checkout, painel).
+   Uso: <link rel="stylesheet" href="/css/theme.css"> e as fontes do Google:
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap">
+*/
+:root {
+  color-scheme: dark;
+
+  /* Superfícies: asfalto / metal */
+  --gb-bg: #0d0d0f;            /* fundo da página (asfalto) */
+  --gb-bg-2: #141417;          /* faixas alternadas */
+  --gb-surface: #1a1a1e;       /* cartões */
+  --gb-surface-2: #232328;     /* cartões elevados, inputs */
+  --gb-surface-3: #2d2d33;     /* hover */
+  --gb-line: #2f2f36;          /* bordas */
+  --gb-line-strong: #45454e;
+
+  /* Texto */
+  --gb-text: #f4f1ea;          /* principal (off-white quente) */
+  --gb-text-2: #b9b4aa;        /* secundário */
+  --gb-text-3: #8a857c;        /* terciário / legendas (AA em --gb-bg) */
+
+  /* Acentos: neon âmbar + vermelho de oficina */
+  --gb-amber: #ffb000;
+  --gb-amber-2: #ffc94a;
+  --gb-amber-ink: #1a1200;     /* texto sobre âmbar */
+  --gb-red: #ff3b2f;
+  --gb-red-2: #ff6a4d;
+  --gb-green: #3ddc84;         /* aberto / sucesso */
+  --gb-danger: #ff5a52;
+  --gb-warning: #ffb000;
+
+  --gb-glow-amber: 0 0 24px rgba(255, 176, 0, .35);
+  --gb-glow-red: 0 0 24px rgba(255, 59, 47, .35);
+
+  /* Tipografia */
+  --gb-font-display: 'Anton', 'Bebas Neue', 'Oswald', Impact, 'Arial Narrow', sans-serif;
+  --gb-font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --gb-font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Raios */
+  --gb-r-sm: 8px;
+  --gb-r: 14px;
+  --gb-r-lg: 22px;
+  --gb-r-pill: 999px;
+
+  /* Sombras */
+  --gb-shadow-1: 0 1px 2px rgba(0,0,0,.4), 0 2px 8px rgba(0,0,0,.25);
+  --gb-shadow-2: 0 10px 30px rgba(0,0,0,.45), 0 2px 6px rgba(0,0,0,.35);
+  --gb-shadow-3: 0 24px 60px rgba(0,0,0,.6);
+
+  /* Movimento */
+  --gb-ease: cubic-bezier(.2, .8, .2, 1);
+  --gb-ease-spring: cubic-bezier(.34, 1.56, .64, 1);
+  --gb-dur: 220ms;
+
+  /* Faixa de advertência (listras de oficina) */
+  --gb-hazard: repeating-linear-gradient(-45deg, var(--gb-amber) 0 12px, #111 12px 24px);
+
+  --gb-focus: 0 0 0 3px var(--gb-bg), 0 0 0 5px var(--gb-amber);
+}
+
+/* Componentes básicos reutilizáveis */
+.gb-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .5em;
+  min-height: 48px; padding: 0 1.25em; border: 0; border-radius: var(--gb-r-pill);
+  font: 700 1rem/1 var(--gb-font-body); cursor: pointer; text-decoration: none;
+  background: var(--gb-amber); color: var(--gb-amber-ink);
+  transition: transform var(--gb-dur) var(--gb-ease), filter var(--gb-dur);
+}
+.gb-btn:hover { filter: brightness(1.08); }
+.gb-btn:active { transform: scale(.97); }
+.gb-btn:disabled { opacity: .5; cursor: not-allowed; }
+.gb-btn--ghost { background: transparent; color: var(--gb-text); box-shadow: inset 0 0 0 1.5px var(--gb-line-strong); }
+.gb-btn--red { background: var(--gb-red); color: #fff; }
+
+.gb-input {
+  width: 100%; min-height: 48px; padding: .75em 1em; border-radius: var(--gb-r-sm);
+  background: var(--gb-surface-2); color: var(--gb-text); border: 1.5px solid var(--gb-line);
+  font: 500 1rem/1.3 var(--gb-font-body);
+}
+.gb-input:focus { outline: none; border-color: var(--gb-amber); box-shadow: 0 0 0 3px rgba(255,176,0,.2); }
+
+:where(a, button, input, textarea, select, [tabindex]):focus-visible { outline: none; box-shadow: var(--gb-focus); }
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --gb-dur: 0ms; }
+}

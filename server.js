@@ -48,6 +48,7 @@ function buildMenu({ includeInactive }) {
   for (const r of recipe) (byProduct[r.product_id] ||= []).push({ id: r.id, name: r.name, removable: !!r.removable, out_of_stock: r.stock_qty <= 0 });
   return {
     store: getSetting('store', {}),
+    delivery: getSetting('delivery', { fee_cents: 0, min_order_cents: 0, eta_min: 30, eta_max: 50 }),
     categories: categories.map(c => ({
       ...c,
       products: products.filter(p => p.category_id === c.id).map(p => ({

@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0d0d0f">
+  <meta name="description" content="Cardápio digital da Garage Burger: hambúrguer artesanal feito na chapa. Peça pelo celular.">
+  <title>Garage Burger · Cardápio</title>
+  <link rel="icon" href="/images/ui/icon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap">
+  <link rel="stylesheet" href="/css/theme.css">
+  <link rel="stylesheet" href="/css/menu.css">
+  <script src="/js/cart.js" defer></script>
+  <script src="/js/menu.js" defer></script>
+</head>
+<body>
+  <!-- Ícones (sprite) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="m20 20-4-4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+      <symbol id="i-bag" viewBox="0 0 24 24"><path d="M5 8h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8L5 8Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 10V7a3 3 0 0 1 6 0v3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></symbol>
+      <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></symbol>
+      <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+      <symbol id="i-bike" viewBox="0 0 24 24"><circle cx="6" cy="16.5" r="3.5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="18" cy="16.5" r="3.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M6 16.5 9.5 9h5l3.5 7.5M12 9 10 5.5H8M14.5 9 16 6h2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="9.5" r="2.5" fill="currentColor"/></symbol>
+      <symbol id="i-phone" viewBox="0 0 24 24"><path d="M6.6 3.5h2.6l1.4 4.2-2 1.3a11 11 0 0 0 6.4 6.4l1.3-2 4.2 1.4v2.6A2.1 2.1 0 0 1 18.4 19.5 15.5 15.5 0 0 1 4.5 5.6 2.1 2.1 0 0 1 6.6 3.5Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+      <symbol id="i-whats" viewBox="0 0 24 24"><path d="M4 20l1.3-4A8.5 8.5 0 1 1 8.6 19L4 20Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 8.5c0 3.5 2.6 6.5 6.5 6.5l1-1.6-2-1-1 .9c-1-.4-2.3-1.6-2.8-2.8l.9-1-1-2L9 8.5Z" fill="currentColor"/></symbol>
+      <symbol id="i-insta" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.2" cy="6.8" r="1.2" fill="currentColor"/></symbol>
+      <symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="m11 12 8-8m-3 3 2.5 2.5M14 9l2 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+      <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4.5 7h15M9.5 7V4.5h5V7M6.5 7l.9 12.2a1.5 1.5 0 0 0 1.5 1.3h6.2a1.5 1.5 0 0 0 1.5-1.3L17.5 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-flame" viewBox="0 0 24 24"><path d="M12 2.5c.5 3.5 5.5 5.6 5.5 11a5.5 5.5 0 0 1-11 0c0-2.4 1.2-4 2.5-5 0 2 1 3 2 3.2-.6-3.2.3-6.8 1-9.2Z" fill="currentColor"/></symbol>
+      <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="10" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+      <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <!-- Ilustrações de fallback (sem foto) -->
+      <symbol id="art-burger" viewBox="0 0 64 64"><path d="M10 27c0-9 9.8-15 22-15s22 6 22 15H10Z" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round"/><path d="M8 33c4 0 4-3 8-3s4 3 8 3 4-3 8-3 4 3 8 3 4-3 8-3 4 3 8 3" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/><rect x="9" y="37" width="46" height="6" rx="3" fill="none" stroke="currentColor" stroke-width="2.6"/><path d="M11 47h42v1a6 6 0 0 1-6 6H17a6 6 0 0 1-6-6v-1Z" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round"/><path d="M24 20h.01M32 18h.01M40 20h.01M28 24h.01M36 24h.01" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></symbol>
+      <symbol id="art-drink" viewBox="0 0 64 64"><path d="M18 20h28l-3.5 34a3 3 0 0 1-3 2.7H24.5a3 3 0 0 1-3-2.7L18 20Z" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round"/><path d="M16 20h32M34 20l4-13 8-1" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 31h24" stroke="currentColor" stroke-width="2.6" stroke-dasharray="3 4" stroke-linecap="round"/></symbol>
+      <symbol id="art-fries" viewBox="0 0 64 64"><path d="M14 28h36l-5 28H19l-5-28Z" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round"/><path d="M20 28 18 10M27 28V7M34 28l1-19M41 28l3-16M23 28l-.5-14M38 28V12" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/><path d="M24 40a8 5 0 0 0 16 0" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></symbol>
+      <symbol id="art-dessert" viewBox="0 0 64 64"><path d="M20 30h24l-3 26H23l-3-26Z" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round"/><path d="M18 30a14 12 0 0 1 28 0" fill="none" stroke="currentColor" stroke-width="2.6"/><path d="M32 18V8l6-2" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/><circle cx="32" cy="17" r="3" fill="currentColor"/></symbol>
+      <symbol id="art-combo" viewBox="0 0 64 64"><path d="M6 33c0-7 7-11 15.5-11S37 26 37 33H6Z" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round"/><rect x="6" y="37" width="31" height="5" rx="2.5" fill="none" stroke="currentColor" stroke-width="2.6"/><path d="M7 46h29a5 5 0 0 1-5 5H12a5 5 0 0 1-5-5Z" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round"/><path d="M41 20h17l-2.5 34h-12L41 20ZM50 20l3-11 5-1" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    </defs>
+  </svg>
+
+  <a class="skip-link" href="#cardapio">Pular para o cardápio</a>
+
+  <header class="hero" id="topo">
+    <div class="hero-bg" id="hero-bg" aria-hidden="true"></div>
+    <div class="hero-lamp" aria-hidden="true"></div>
+    <div class="hero-inner">
+      <img class="hero-logo" id="hero-logo" alt="" hidden>
+      <p class="hero-kicker"><span class="dot-sep" aria-hidden="true"></span><span id="hero-kicker">Hambúrguer artesanal</span></p>
+      <h1 class="neon" id="store-name" aria-label="Garage Burger">
+        <span class="neon-a">Garage</span>
+        <span class="neon-b">Burger</span>
+      </h1>
+      <ul class="hero-status" id="hero-status" aria-label="Informações da loja">
+        <li class="pill pill-skel" aria-hidden="true"></li>
+        <li class="pill pill-skel" aria-hidden="true"></li>
+      </ul>
+    </div>
+    <div class="hero-sign" aria-hidden="true">
+      <svg class="sign-art"><use href="#art-burger"/></svg>
+      <span class="sign-txt">Pit stop da fome</span>
+    </div>
+    <div class="hazard" aria-hidden="true"></div>
+    <div class="shutter" aria-hidden="true"><span class="shutter-handle"></span></div>
+  </header>
+
+  <nav class="catbar" id="catbar" aria-label="Categorias do cardápio">
+    <div class="catbar-inner">
+      <button class="icon-btn search-toggle" id="search-toggle" type="button" aria-label="Buscar no cardápio" aria-expanded="false" aria-controls="search-box">
+        <svg class="ico" aria-hidden="true"><use href="#i-search"/></svg>
+      </button>
+      <div class="chips" id="chips" role="list"></div>
+      <div class="search-box" id="search-box" role="search">
+        <svg class="ico" aria-hidden="true"><use href="#i-search"/></svg>
+        <label class="sr-only" for="search">Buscar no cardápio</label>
+        <input id="search" type="search" placeholder="Buscar lanche, bebida, ingrediente…" autocomplete="off" enterkeyhint="search">
+        <button class="icon-btn icon-btn--sm" id="search-close" type="button" aria-label="Fechar busca">
+          <svg class="ico" aria-hidden="true"><use href="#i-close"/></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main id="cardapio" class="wrap" tabindex="-1">
+    <p class="sr-only" aria-live="polite" id="search-status"></p>
+    <section class="featured" id="destaques" aria-labelledby="destaques-title" hidden>
+      <div class="sec-head">
+        <span class="bay" aria-hidden="true">Pit stop</span>
+        <h2 id="destaques-title">Destaques da casa</h2>
+        <div class="rail-nav">
+          <button class="icon-btn" type="button" id="rail-prev" aria-label="Destaques anteriores"><svg class="ico flip" aria-hidden="true"><use href="#i-chevron"/></svg></button>
+          <button class="icon-btn" type="button" id="rail-next" aria-label="Próximos destaques"><svg class="ico" aria-hidden="true"><use href="#i-chevron"/></svg></button>
+        </div>
+      </div>
+      <div class="rail" id="rail"></div>
+    </section>
+
+    <div id="categories">
+      <div class="skeleton-list" aria-hidden="true">
+        <div class="sk sk-title"></div>
+        <div class="sk sk-card"></div><div class="sk sk-card"></div><div class="sk sk-card"></div>
+      </div>
+    </div>
+
+    <div class="empty-search" id="empty-search" hidden>
+      <svg class="art" aria-hidden="true"><use href="#art-burger"/></svg>
+      <p><strong>Nada por aqui.</strong> Tente outro nome ou ingrediente.</p>
+      <button class="gb-btn gb-btn--ghost" type="button" id="clear-search">Limpar busca</button>
+    </div>
+
+    <div class="load-error" id="load-error" hidden role="alert">
+      <p><strong>Não conseguimos carregar o cardápio.</strong> Verifique sua conexão.</p>
+      <button class="gb-btn" type="button" id="retry">Tentar de novo</button>
+    </div>
+  </main>
+
+  <footer class="site-footer" id="rodape">
+    <div class="wrap">
+      <div class="foot-brand">
+        <span class="foot-name" id="foot-name">Garage Burger</span>
+        <span class="foot-tag" id="foot-tag"></span>
+      </div>
+      <ul class="foot-info" id="foot-info"></ul>
+      <div class="foot-bottom">
+        <span id="foot-copy">© Garage Burger</span>
+        <a class="owner-link" href="/admin/" rel="nofollow">
+          <svg class="ico" aria-hidden="true"><use href="#i-key"/></svg>
+          <span>Área do dono</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Barra flutuante da sacola -->
+  <div class="cartbar" id="cartbar" hidden>
+    <button class="cartbar-btn" id="cartbar-btn" type="button" aria-haspopup="dialog" aria-controls="drawer">
+      <span class="cartbar-icon" id="cart-target">
+        <svg class="ico" aria-hidden="true"><use href="#i-bag"/></svg>
+        <span class="cartbar-count" id="cart-count">0</span>
+      </span>
+      <span class="cartbar-label">Ver sacola</span>
+      <span class="cartbar-total" id="cart-total">R$ 0,00</span>
+    </button>
+  </div>
+
+  <!-- Produto (bottom sheet) -->
+  <dialog class="sheet" id="sheet" aria-labelledby="sheet-title">
+    <form class="sheet-panel" id="sheet-form" method="dialog" novalidate>
+      <div class="sheet-grip" aria-hidden="true"><span></span></div>
+      <button class="icon-btn sheet-close" type="button" data-close aria-label="Fechar">
+        <svg class="ico" aria-hidden="true"><use href="#i-close"/></svg>
+      </button>
+      <div class="sheet-scroll" id="sheet-scroll">
+        <div class="sheet-media" id="sheet-media"></div>
+        <div class="sheet-body">
+          <h2 class="sheet-title" id="sheet-title"></h2>
+          <p class="sheet-desc" id="sheet-desc"></p>
+          <div class="sheet-price" id="sheet-price"></div>
+
+          <fieldset class="opt" id="opt-ing" hidden>
+            <legend><span class="opt-title">Ingredientes</span><span class="opt-hint">Toque para tirar</span></legend>
+            <div class="ing-list" id="ing-list"></div>
+          </fieldset>
+
+          <fieldset class="opt" id="opt-add" hidden>
+            <legend><span class="opt-title">Turbine seu pedido</span><span class="opt-hint">Opcional</span></legend>
+            <div class="add-list" id="add-list"></div>
+          </fieldset>
+
+          <div class="opt">
+            <label class="opt-title" for="notes">Alguma observação?</label>
+            <textarea class="gb-input notes" id="notes" maxlength="140" rows="2" placeholder="Ex.: cortar ao meio, molho à parte…"></textarea>
+            <span class="notes-count" id="notes-count" aria-hidden="true">0/140</span>
+          </div>
+          <p class="sheet-summary" id="sheet-summary" aria-live="polite"></p>
+        </div>
+      </div>
+      <div class="sheet-foot">
+        <div class="stepper" role="group" aria-label="Quantidade">
+          <button type="button" class="step-btn" id="qty-minus" aria-label="Diminuir quantidade"><svg class="ico" aria-hidden="true"><use href="#i-minus"/></svg></button>
+          <output id="qty" aria-live="polite">1</output>
+          <button type="button" class="step-btn" id="qty-plus" aria-label="Aumentar quantidade"><svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></button>
+        </div>
+        <button type="submit" class="gb-btn add-btn" id="add-btn">
+          <span>Adicionar</span><span class="add-price" id="add-price">R$ 0,00</span>
+        </button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Sacola (drawer) -->
+  <dialog class="drawer" id="drawer" aria-labelledby="drawer-title">
+    <div class="drawer-panel">
+      <div class="sheet-grip" aria-hidden="true"><span></span></div>
+      <div class="drawer-head">
+        <h2 id="drawer-title">Sua sacola</h2>
+        <button class="icon-btn" type="button" data-close aria-label="Fechar sacola">
+          <svg class="ico" aria-hidden="true"><use href="#i-close"/></svg>
+        </button>
+      </div>
+      <div class="drawer-scroll">
+        <ul class="lines" id="lines"></ul>
+        <div class="drawer-empty" id="drawer-empty" hidden>
+          <svg class="art" aria-hidden="true"><use href="#art-burger"/></svg>
+          <p><strong>Sua sacola está vazia.</strong><br>Bora encher o tanque?</p>
+          <button class="gb-btn gb-btn--ghost" type="button" data-close>Ver cardápio</button>
+        </div>
+      </div>
+      <div class="drawer-foot" id="drawer-foot">
+        <div class="min-order" id="min-order" hidden>
+          <div class="min-bar"><span id="min-fill"></span></div>
+          <p id="min-text"></p>
+        </div>
+        <div class="sum-row"><span>Subtotal</span><strong id="drawer-subtotal">R$ 0,00</strong></div>
+        <p class="sum-note" id="fee-note">Taxa de entrega calculada no próximo passo.</p>
+        <a class="gb-btn checkout-btn" href="/checkout" id="checkout-btn">
+          <span>Finalizar pedido</span>
+          <svg class="ico" aria-hidden="true"><use href="#i-chevron"/></svg>
+        </a>
+        <button class="text-btn" type="button" id="clear-cart">Esvaziar sacola</button>
+      </div>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
