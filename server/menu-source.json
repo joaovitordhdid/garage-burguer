@@ -1,0 +1,6 @@
+{"store":{"name":"Garage Burger","tagline":"Hambúrguer artesanal"},
+ "delivery":{"fee_cents":500,"min_order_cents":0,"eta_min":30,"eta_max":50},
+ "categories":[{"name":"Hambúrgueres","items":[
+   {"name":"X-Garage (provisório)","description":"Pão brioche, blend 150g, cheddar, bacon","price":"29,90","ingredients":["Pão brioche","Blend 150g","Cheddar","Bacon"],"addons":[{"name":"Bacon extra","price":"4,00"}]},
+   {"name":"Smash Duplo (provisório)","description":"Dois smash 80g, queijo prato, cebola","price":"27,00","original_price":"32,00","ingredients":["Pão brioche","Smash 80g","Queijo prato","Cebola"]}]},
+  {"name":"Bebidas","items":[{"name":"Coca-Cola lata (provisório)","description":"350ml","price":"6,00"}]}]}

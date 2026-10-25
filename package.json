@@ -1,0 +1,22 @@
+{
+  "name": "garage-burger",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Cardápio digital, checkout, NFC-e e painel do dono da Garage Burger",
+  "main": "server.js",
+  "scripts": {
+    "start": "node --no-warnings server.js",
+    "dev": "node --no-warnings --watch server.js",
+    "reset-db": "rm -rf data && echo banco apagado"
+  },
+  "engines": {
+    "node": ">=22.5"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cookie-parser": "^1.4.7",
+    "express": "^5.3.0",
+    "express-rate-limit": "^8.7.1",
+    "helmet": "^8.3.0"
+  }
+}
