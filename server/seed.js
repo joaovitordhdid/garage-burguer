@@ -41,7 +41,8 @@ function seedIfEmpty() {
           const name = ingName.trim();
           if (!name) continue;
           let row = getIng.get(name);
-          if (!row) row = { id: insIng.run(name, 'un', 100, 15, 150, 1).lastInsertRowid };
+          const removable = (it.fixed || []).includes(name) ? 0 : 1;
+          if (!row) row = { id: insIng.run(name, 'un', 100, 15, 150, removable).lastInsertRowid };
           link.run(prodId, row.id, 1);
         }
         for (const a of it.addons || []) insAddon.run(prodId, a.name, toCents(a.price) ?? 0);

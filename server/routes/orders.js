@@ -213,7 +213,7 @@ router.post('/', createLimiter, async (req, res, next) => {
       const dec = db.prepare('UPDATE ingredients SET stock_qty = stock_qty - ? WHERE id = ?');
       const mov = db.prepare("INSERT INTO stock_movements (ingredient_id, delta, reason, order_id) VALUES (?, ?, 'pedido', ?)");
       for (const [ingId, used] of stockUse) { dec.run(used, ingId); mov.run(ingId, -used, id); }
-      db.prepare("INSERT INTO transactions (type, category, description, amount_cents, order_id) VALUES ('receita', 'Vendas', ?, ?, ?)")
+      db.prepare("INSERT INTO transactions (type, category, description, amount_cents, order_id, date) VALUES ('receita', 'Vendas', ?, ?, ?, date('now', '-3 hours'))")
         .run(`Pedido ${code}`, total, id);
       db.prepare("INSERT INTO order_status_log (order_id, status) VALUES (?, 'recebido')").run(id);
       return id;

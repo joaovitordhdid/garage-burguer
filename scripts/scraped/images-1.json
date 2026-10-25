@@ -1,0 +1,128 @@
+{
+ "products": [
+  {
+   "name": "ALASANHADO",
+   "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/169280866264e635d6100ee_75_75.jpeg"
+  },
+  {
+   "name": "HAMBURGUER",
+   "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/16989362696543b5cd3a533_75_75.jpeg"
+  },
+  {
+   "name": "AMERICANO",
+   "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/1721340375669991d73188e_75_75.jpeg"
+  },
+  {
+   "name": "Eggs frango",
+   "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/169280573164e62a63713fc_75_75.jpeg"
+  },
+  {
+   "name": "X BURGUER",
+   "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/16989362856543b5ddc6fe7_75_75.jpeg"
+  },
+  {
+   "name": "EGGS",
+   "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/164203490961df76ddd04ac_75_75.jpeg"
+  },
+  {
+   "name": "X FRANGO",
+   "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/169280590164e62b0d17636_75_75.jpeg"
+  },
+  {
+   "name": "X CALABRESA",
+   "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/169280594064e62b34795c7_75_75.jpeg"
+  },
+  {
+   "name": "X BACON",
+   "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/169280597364e62b55634ef_75_75.jpeg"
+  },
+  {
+   "name": "X CORAÇÃO",
+   "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/1635734224617f52d0e1eee_75_75.jpeg"
+  },
+  {
+   "name": "EGGS CALABRESA",
+   "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/169280862564e635b1e5a9c_75_75.jpeg"
+  },
+  {
+   "name": "X FILÉ",
+   "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/164203182561df6ad12324a_75_75.jpeg"
+  },
+  {
+   "name": "EGGS CORAÇÃO",
+   "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/169280615764e62c0dab81f_75_75.jpeg"
+  },
+  {
+   "name": "EGGS BACON",
+   "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/169280620764e62c3fc762e_75_75.jpeg"
+  },
+  {
+   "name": "EGGS FILE",
+   "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/17484607006837649c35fd9_75_75.jpeg"
+  },
+  {
+   "name": "LA CHAPA",
+   "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/169280625064e62c6acff9e_75_75.jpeg"
+  },
+  {
+   "name": "BARÃO DE IPANEMA",
+   "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/169280628364e62c8b469b5_75_75.jpeg"
+  },
+  {
+   "name": "DA CASA",
+   "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/169280631464e62caa33158_75_75.jpeg"
+  },
+  {
+   "name": "CALABRESA ESPECIAL",
+   "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/169280856964e63579db26b_75_75.jpeg"
+  },
+  {
+   "name": "CALAFRANGO",
+   "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/1748460749683764cdce417_75_75.jpeg"
+  },
+  {
+   "name": "CORAÇÃO ESPECIAL",
+   "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/169280641064e62d0a8480c_75_75.jpeg"
+  },
+  {
+   "name": "FRANPIRY",
+   "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/1721340381669991dd52a26_75_75.jpeg"
+  },
+  {
+   "name": "EGGS TOSCANA",
+   "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/169292993464e80f8e96dc4_75_75.jpeg"
+  },
+  {
+   "name": "X TOSCANA",
+   "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/164203560061df7990e094f_75_75.jpeg"
+  },
+  {
+   "name": "FRANGO ESPECIAL",
+   "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/169280836764e634afac020_75_75.jpeg"
+  },
+  {
+   "name": "TOSCANA ESPECIAL",
+   "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/169280839064e634c6916a6_75_75.jpeg"
+  },
+  {
+   "name": "FRANBURGUER ESPECIAL",
+   "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/169280841264e634dc190bc_75_75.jpeg"
+  },
+  {
+   "name": "FILÉ ESPECIAL",
+   "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/169280844964e6350164c8f_75_75.jpeg"
+  },
+  {
+   "name": "GARAGE BURGER",
+   "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/1680037911642358173bd5d_75_75.jpeg"
+  },
+  {
+   "name": "X-FRANGO CHEDDAR",
+   "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/1748460770683764e2d00f1_75_75.jpeg"
+  },
+  {
+   "name": "FILÉ COM BACON ESPECIAL",
+   "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/1721340387669991e37e2cd_75_75.jpeg"
+  }
+ ]
+}

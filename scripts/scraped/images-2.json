@@ -1,0 +1,124 @@
+{
+ "products": [
+  {
+   "name": "Cachorro Quente no Prato",
+   "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/164202361461df4abeb9218_75_75.jpeg"
+  },
+  {
+   "name": "Batata frita C/cheddar &Calabresa",
+   "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/169292999264e80fc839c34_75_75.jpeg"
+  },
+  {
+   "name": "Batata Frita c/ Cheddar & Bacon",
+   "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/169290941064e7bf623973e_75_75.jpeg"
+  },
+  {
+   "name": "ANÉIS DE CEBOLA 6 unidades",
+   "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/17907005826abbec2647d56_75_75.jpeg"
+  },
+  {
+   "name": "COCA 1 L",
+   "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/16989311296543a1b925ac6_75_75.jpeg"
+  },
+  {
+   "name": "GUARANÁ ANTÁRTICA 1L",
+   "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/16989311766543a1e8ac44b_75_75.jpeg"
+  },
+  {
+   "name": "REFRI INDAIÁ 1 L",
+   "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/1765226691693738c30d97c_75_75.jpeg"
+  },
+  {
+   "name": "MARACUJA C/LEITE",
+   "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/17484610686837660c14f9c_75_75.jpeg"
+  },
+  {
+   "name": "MANGA C/LEITE",
+   "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/17484610846837661c36c85_75_75.jpeg"
+  },
+  {
+   "name": "MANGABA. C/LEITE",
+   "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/17484611646837666c7caff_75_75.jpeg"
+  },
+  {
+   "name": "UMBU.C/LEITE",
+   "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/174846117668376678a8476_75_75.jpeg"
+  },
+  {
+   "name": "GRAVIOLA C/LEITE",
+   "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/174846118968376685a7f77_75_75.jpeg"
+  },
+  {
+   "name": "CAJA C/LEITE",
+   "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/17484611986837668e63235_75_75.jpeg"
+  },
+  {
+   "name": "CUPUAÇU C/LEITE",
+   "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/17484612106837669a744c4_75_75.jpeg"
+  },
+  {
+   "name": "AMEIXA C/LEITE",
+   "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/1748461220683766a49786b_75_75.jpeg"
+  },
+  {
+   "name": "CACAU C/LEITE",
+   "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/1748461229683766ad02fe5_75_75.jpeg"
+  },
+  {
+   "name": "GOIABA C/LEITE",
+   "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/172134042266999206cb0d6_75_75.jpeg"
+  },
+  {
+   "name": "ACEROLA C/LEITE",
+   "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/172134042566999209102cf_75_75.jpeg"
+  },
+  {
+   "name": "MARACUJÁ S/LEITE",
+   "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/17484613486837672413de0_75_75.jpeg"
+  },
+  {
+   "name": "MANGA S/LEITE",
+   "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/17484613406837671cb217c_75_75.jpeg"
+  },
+  {
+   "name": "MANGABA S/LEITE",
+   "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/174846132968376711d5b8b_75_75.jpeg"
+  },
+  {
+   "name": "UMBU S/LEITE",
+   "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/1748461320683767080e45f_75_75.jpeg"
+  },
+  {
+   "name": "CAJA S/LEITE",
+   "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/1748461311683766ff38ef8_75_75.jpeg"
+  },
+  {
+   "name": "CUPUAÇU S/LEITE",
+   "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/1748461304683766f85df78_75_75.jpeg"
+  },
+  {
+   "name": "AMEIXA S/LEITE",
+   "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/1748461293683766ed4cfc9_75_75.jpeg"
+  },
+  {
+   "name": "CACAU S/LEITE",
+   "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/1748461285683766e504048_75_75.jpeg"
+  },
+  {
+   "name": "GOIABA S/LEITE",
+   "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/172134044166999219df97a_75_75.jpeg"
+  },
+  {
+   "name": "ACEROLA S/LEITE",
+   "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/17213404436699921b8991d_75_75.jpeg"
+  },
+  {
+   "name": "Bomba açaí + guaraná energético",
+   "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/170554479965a88c5f91b1f_75_75.jpeg"
+  },
+  {
+   "name": "Bomba Baiana Morango",
+   "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/170554497465a88d0ecbbf6_75_75.jpeg"
+  }
+ ]
+}

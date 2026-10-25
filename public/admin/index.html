@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0d0d0f">
+  <title>Painel · Garage Burger</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap">
+  <link rel="stylesheet" href="/css/theme.css">
+  <link rel="stylesheet" href="/admin/admin.css">
+</head>
+<body>
+  <!-- Login -->
+  <main id="login" class="login" hidden>
+    <form id="login-form" class="login__card" novalidate>
+      <div class="login__brand">
+        <span class="brand-mark" aria-hidden="true">GB</span>
+        <div>
+          <h1>Garage Burger</h1>
+          <p>Painel do dono</p>
+        </div>
+      </div>
+      <label class="field">
+        <span>E-mail</span>
+        <input class="gb-input" type="email" name="email" autocomplete="username" required>
+      </label>
+      <label class="field">
+        <span>Senha</span>
+        <input class="gb-input" type="password" name="password" autocomplete="current-password" required>
+      </label>
+      <p id="login-error" class="form-error" role="alert" hidden></p>
+      <button class="gb-btn login__submit" type="submit">Entrar</button>
+      <a class="login__back" href="/">← Voltar ao cardápio</a>
+    </form>
+  </main>
+
+  <!-- Painel -->
+  <div id="app" class="app" hidden>
+    <aside class="sidebar" aria-label="Menu do painel">
+      <div class="sidebar__brand">
+        <span class="brand-mark" aria-hidden="true">GB</span>
+        <div><strong>Garage Burger</strong><small>Painel do dono</small></div>
+      </div>
+      <nav class="nav" id="nav">
+        <a href="#pedidos" data-view="pedidos"><span class="nav__ico" data-icon="orders"></span><span class="nav__label">Pedidos</span><span class="nav__badge" id="badge-orders" hidden></span></a>
+        <a href="#cardapio" data-view="cardapio"><span class="nav__ico" data-icon="menu"></span><span class="nav__label">Cardápio</span></a>
+        <a href="#estoque" data-view="estoque"><span class="nav__ico" data-icon="box"></span><span class="nav__label">Estoque</span><span class="nav__badge nav__badge--warn" id="badge-stock" hidden></span></a>
+        <a href="#financeiro" data-view="financeiro"><span class="nav__ico" data-icon="chart"></span><span class="nav__label">Financeiro</span></a>
+        <a href="#config" data-view="config"><span class="nav__ico" data-icon="gear"></span><span class="nav__label">Configurações</span></a>
+      </nav>
+      <div class="sidebar__foot">
+        <a class="sidebar__link" href="/" target="_blank" rel="noopener">Ver cardápio ↗</a>
+        <button class="btn-text" id="logout-btn" type="button">Sair</button>
+      </div>
+    </aside>
+
+    <div class="main">
+      <header class="topbar">
+        <h2 id="view-title">Pedidos</h2>
+        <div class="topbar__right">
+          <label class="store-toggle" title="Abrir ou fechar a loja para novos pedidos">
+            <input type="checkbox" id="store-open">
+            <span class="switch" aria-hidden="true"></span>
+            <span id="store-open-label">Loja aberta</span>
+          </label>
+        </div>
+      </header>
+      <section id="view" class="view" aria-live="polite"></section>
+    </div>
+  </div>
+
+  <div id="toasts" class="toasts" aria-live="polite"></div>
+  <dialog id="modal" class="modal"><div class="modal__inner" id="modal-body"></div></dialog>
+
+  <script src="/vendor/chart.umd.min.js" defer></script>
+  <script src="/admin/js/core.js" defer></script>
+  <script src="/admin/js/pedidos.js" defer></script>
+  <script src="/admin/js/cardapio.js" defer></script>
+  <script src="/admin/js/estoque.js" defer></script>
+  <script src="/admin/js/financeiro.js" defer></script>
+  <script src="/admin/js/config.js" defer></script>
+  <script src="/admin/js/main.js" defer></script>
+</body>
+</html>

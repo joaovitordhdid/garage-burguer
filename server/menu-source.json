@@ -1,6 +1,2007 @@
-{"store":{"name":"Garage Burger","tagline":"Hambúrguer artesanal"},
- "delivery":{"fee_cents":500,"min_order_cents":0,"eta_min":30,"eta_max":50},
- "categories":[{"name":"Hambúrgueres","items":[
-   {"name":"X-Garage (provisório)","description":"Pão brioche, blend 150g, cheddar, bacon","price":"29,90","ingredients":["Pão brioche","Blend 150g","Cheddar","Bacon"],"addons":[{"name":"Bacon extra","price":"4,00"}]},
-   {"name":"Smash Duplo (provisório)","description":"Dois smash 80g, queijo prato, cebola","price":"27,00","original_price":"32,00","ingredients":["Pão brioche","Smash 80g","Queijo prato","Cebola"]}]},
-  {"name":"Bebidas","items":[{"name":"Coca-Cola lata (provisório)","description":"350ml","price":"6,00"}]}]}
+{
+ "store": {
+  "name": "Garage Burger 79",
+  "tagline": "Hambúrguer na chapa em Nossa Senhora do Socorro",
+  "logo": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/stores/logo/172133924566998d6d2e8a6_medium.png",
+  "banner": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/stores/background/174846658168377b95ae37d.png",
+  "address": "Nossa Senhora do Socorro - SE",
+  "phone": "5579981388094",
+  "whatsapp": "5579981388094",
+  "hours": "Todos os dias, 14h às 0h59",
+  "open": true
+ },
+ "delivery": {
+  "fee_cents": 500,
+  "min_order_cents": 1000,
+  "eta_min": 30,
+  "eta_max": 50
+ },
+ "categories": [
+  {
+   "name": "Combos",
+   "items": [
+    {
+     "name": "2 EGGS + GOOB de 1L",
+     "price": "25,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/17484604036837637376e40_75_75.jpeg",
+     "description": "Combo com refrigerante Goob 1L.",
+     "featured": true
+    },
+    {
+     "name": "1 EGGS + 1 X-FRANGO+ GOOB DE 1L",
+     "price": "28,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/1748460463683763af26ae8_75_75.jpeg",
+     "description": "Combo com refrigerante Goob 1L.",
+     "original_price": "29,00",
+     "featured": true
+    }
+   ]
+  },
+  {
+   "name": "Hambúrguer de Picanha",
+   "items": [
+    {
+     "name": "X-PICANHA",
+     "price": "14,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/17484605806837642448d2a_75_75.jpeg",
+     "description": "Pão, hambúrguer de picanha, queijo mussarela, alface, tomate, maionese da casa.",
+     "ingredients": [
+      "Pão",
+      "Hambúrguer de picanha",
+      "Queijo mussarela",
+      "Alface",
+      "Tomate",
+      "Maionese da casa"
+     ],
+     "fixed": [
+      "Pão",
+      "Hambúrguer de picanha"
+     ],
+     "addons": [
+      {
+       "name": "Bacon extra",
+       "price": "4,00"
+      },
+      {
+       "name": "Ovo extra",
+       "price": "2,00"
+      },
+      {
+       "name": "Cheddar extra",
+       "price": "3,00"
+      },
+      {
+       "name": "Hambúrguer extra",
+       "price": "5,00"
+      },
+      {
+       "name": "Catupiry",
+       "price": "3,00"
+      }
+     ],
+     "featured": false
+    },
+    {
+     "name": "EGGS-PICANHA",
+     "price": "16,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/170572730765ab554b7f263_75_75.jpeg",
+     "description": "Pão, hambúrguer de picanha, ovo, alface, tomate, maionese da casa.",
+     "ingredients": [
+      "Pão",
+      "Hambúrguer de picanha",
+      "Ovo",
+      "Alface",
+      "Tomate",
+      "Maionese da casa"
+     ],
+     "fixed": [
+      "Pão",
+      "Hambúrguer de picanha"
+     ],
+     "addons": [
+      {
+       "name": "Bacon extra",
+       "price": "4,00"
+      },
+      {
+       "name": "Ovo extra",
+       "price": "2,00"
+      },
+      {
+       "name": "Cheddar extra",
+       "price": "3,00"
+      },
+      {
+       "name": "Hambúrguer extra",
+       "price": "5,00"
+      },
+      {
+       "name": "Catupiry",
+       "price": "3,00"
+      }
+     ],
+     "featured": false
+    },
+    {
+     "name": "PICANHA AO ALHO",
+     "price": "16,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/174846059968376437b65cb_75_75.jpeg",
+     "description": "Pão, hambúrguer de picanha, alface, tomate, maionese da casa, molho de alho.",
+     "ingredients": [
+      "Pão",
+      "Hambúrguer de picanha",
+      "Alface",
+      "Tomate",
+      "Maionese da casa",
+      "Molho de alho"
+     ],
+     "fixed": [
+      "Pão",
+      "Hambúrguer de picanha"
+     ],
+     "addons": [
+      {
+       "name": "Bacon extra",
+       "price": "4,00"
+      },
+      {
+       "name": "Ovo extra",
+       "price": "2,00"
+      },
+      {
+       "name": "Cheddar extra",
+       "price": "3,00"
+      },
+      {
+       "name": "Hambúrguer extra",
+       "price": "5,00"
+      },
+      {
+       "name": "Catupiry",
+       "price": "3,00"
+      }
+     ],
+     "featured": false
+    },
+    {
+     "name": "X-PICANHA CHEDDAR",
+     "price": "12,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/170569998865aaea94a9ac9_75_75.jpeg",
+     "description": "Pão, hambúrguer de picanha, cheddar, alface, tomate, maionese da casa.",
+     "ingredients": [
+      "Pão",
+      "Hambúrguer de picanha",
+      "Cheddar",
+      "Alface",
+      "Tomate",
+      "Maionese da casa"
+     ],
+     "fixed": [
+      "Pão",
+      "Hambúrguer de picanha"
+     ],
+     "addons": [
+      {
+       "name": "Bacon extra",
+       "price": "4,00"
+      },
+      {
+       "name": "Ovo extra",
+       "price": "2,00"
+      },
+      {
+       "name": "Cheddar extra",
+       "price": "3,00"
+      },
+      {
+       "name": "Hambúrguer extra",
+       "price": "5,00"
+      },
+      {
+       "name": "Catupiry",
+       "price": "3,00"
+      }
+     ],
+     "featured": false
+    },
+    {
+     "name": "X-PICANHA BACON",
+     "price": "19,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/17484606176837644915c5c_75_75.jpeg",
+     "description": "Pão, hambúrguer de picanha, bacon, queijo mussarela, alface, tomate, maionese da casa.",
+     "ingredients": [
+      "Pão",
+      "Hambúrguer de picanha",
+      "Bacon",
+      "Queijo mussarela",
+      "Alface",
+      "Tomate",
+      "Maionese da casa"
+     ],
+     "fixed": [
+      "Pão",
+      "Hambúrguer de picanha"
+     ],
+     "addons": [
+      {
+       "name": "Bacon extra",
+       "price": "4,00"
+      },
+      {
+       "name": "Ovo extra",
+       "price": "2,00"
+      },
+      {
+       "name": "Cheddar extra",
+       "price": "3,00"
+      },
+      {
+       "name": "Hambúrguer extra",
+       "price": "5,00"
+      },
+      {
+       "name": "Catupiry",
+       "price": "3,00"
+      }
+     ],
+     "featured": false
+    },
+    {
+     "name": "EGGS PICANHA (onion rings)",
+     "price": "18,00",
+     "image": null,
+     "description": "Pão, hambúrguer de picanha, ovo, alface, tomate, maionese da casa, anéis de cebola.",
+     "ingredients": [
+      "Pão",
+      "Hambúrguer de picanha",
+      "Ovo",
+      "Alface",
+      "Tomate",
+      "Maionese da casa",
+      "Anéis de cebola"
+     ],
+     "fixed": [
+      "Pão",
+      "Hambúrguer de picanha"
+     ],
+     "addons": [
+      {
+       "name": "Bacon extra",
+       "price": "4,00"
+      },
+      {
+       "name": "Ovo extra",
+       "price": "2,00"
+      },
+      {
+       "name": "Cheddar extra",
+       "price": "3,00"
+      },
+      {
+       "name": "Hambúrguer extra",
+       "price": "5,00"
+      },
+      {
+       "name": "Catupiry",
+       "price": "3,00"
+      }
+     ],
+     "featured": false
+    },
+    {
+     "name": "PICANHA DO CHEFF",
+     "price": "22,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/174846063168376457392ab_75_75.jpeg",
+     "description": "Pão, hambúrguer de picanha, alface, tomate, maionese da casa.",
+     "ingredients": [
+      "Pão",
+      "Hambúrguer de picanha",
+      "Alface",
+      "Tomate",
+      "Maionese da casa"
+     ],
+     "fixed": [
+      "Pão",
+      "Hambúrguer de picanha"
+     ],
+     "addons": [
+      {
+       "name": "Bacon extra",
+       "price": "4,00"
+      },
+      {
+       "name": "Ovo extra",
+       "price": "2,00"
+      },
+      {
+       "name": "Cheddar extra",
+       "price": "3,00"
+      },
+      {
+       "name": "Hambúrguer extra",
+       "price": "5,00"
+      },
+      {
+       "name": "Catupiry",
+       "price": "3,00"
+      }
+     ],
+     "featured": true
+    },
+    {
+     "name": "PICANHA CHEDDAR BACON",
+     "price": "20,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/1748460646683764668b0ab_75_75.jpeg",
+     "description": "Pão, hambúrguer de picanha, bacon, cheddar, alface, tomate, maionese da casa.",
+     "ingredients": [
+      "Pão",
+      "Hambúrguer de picanha",
+      "Bacon",
+      "Cheddar",
+      "Alface",
+      "Tomate",
+      "Maionese da casa"
+     ],
+     "fixed": [
+      "Pão",
+      "Hambúrguer de picanha"
+     ],
+     "addons": [
+      {
+       "name": "Bacon extra",
+       "price": "4,00"
+      },
+      {
+       "name": "Ovo extra",
+       "price": "2,00"
+      },
+      {
+       "name": "Cheddar extra",
+       "price": "3,00"
+      },
+      {
+       "name": "Hambúrguer extra",
+       "price": "5,00"
+      },
+      {
+       "name": "Catupiry",
+       "price": "3,00"
+      }
+     ],
+     "featured": true
+    }
+   ]
+  },
+  {
+   "name": "Hambúrgueres Tradicionais",
+   "items": [
+    {
+     "name": "ALASANHADO",
+     "price": "19,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/169280866264e635d6100ee_75_75.jpeg",
+     "description": "Pão, hambúrguer bovino, queijo mussarela, alface, tomate, maionese da casa, presunto, molho de tomate.",
+     "ingredients": [
+      "Pão",
+      "Hambúrguer bovino",
+      "Queijo mussarela",
+      "Alface",
+      "Tomate",
+      "Maionese da casa",
+      "Presunto",
+      "Molho de tomate"
+     ],
+     "fixed": [
+      "Pão",
+      "Hambúrguer bovino"
+     ],
+     "addons": [
+      {
+       "name": "Bacon extra",
+       "price": "4,00"
+      },
+      {
+       "name": "Ovo extra",
+       "price": "2,00"
+      },
+      {
+       "name": "Cheddar extra",
+       "price": "3,00"
+      },
+      {
+       "name": "Hambúrguer extra",
+       "price": "5,00"
+      },
+      {
+       "name": "Catupiry",
+       "price": "3,00"
+      }
+     ],
+     "featured": false
+    },
+    {
+     "name": "HAMBURGUER",
+     "price": "8,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/16989362696543b5cd3a533_75_75.jpeg",
+     "description": "Pão, hambúrguer bovino, alface, tomate, maionese da casa.",
+     "ingredients": [
+      "Pão",
+      "Hambúrguer bovino",
+      "Alface",
+      "Tomate",
+      "Maionese da casa"
+     ],
+     "fixed": [
+      "Pão",
+      "Hambúrguer bovino"
+     ],
+     "addons": [
+      {
+       "name": "Bacon extra",
+       "price": "4,00"
+      },
+      {
+       "name": "Ovo extra",
+       "price": "2,00"
+      },
+      {
+       "name": "Cheddar extra",
+       "price": "3,00"
+      },
+      {
+       "name": "Hambúrguer extra",
+       "price": "5,00"
+      },
+      {
+       "name": "Catupiry",
+       "price": "3,00"
+      }
+     ],
+     "featured": false
+    },
+    {
+     "name": "AMERICANO",
+     "price": "8,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/1721340375669991d73188e_75_75.jpeg",
+     "description": "Pão, hambúrguer bovino, ovo, alface, tomate, maionese da casa.",
+     "ingredients": [
+      "Pão",
+      "Hambúrguer bovino",
+      "Ovo",
+      "Alface",
+      "Tomate",
+      "Maionese da casa"
+     ],
+     "fixed": [
+      "Pão",
+      "Hambúrguer bovino"
+     ],
+     "addons": [
+      {
+       "name": "Bacon extra",
+       "price": "4,00"
+      },
+      {
+       "name": "Ovo extra",
+       "price": "2,00"
+      },
+      {
+       "name": "Cheddar extra",
+       "price": "3,00"
+      },
+      {
+       "name": "Hambúrguer extra",
+       "price": "5,00"
+      },
+      {
+       "name": "Catupiry",
+       "price": "3,00"
+      }
+     ],
+     "featured": false
+    },
+    {
+     "name": "Eggs frango",
+     "price": "17,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/169280573164e62a63713fc_75_75.jpeg",
+     "description": "Pão, frango desfiado, ovo, alface, tomate, maionese da casa.",
+     "ingredients": [
+      "Pão",
+      "Frango desfiado",
+      "Ovo",
+      "Alface",
+      "Tomate",
+      "Maionese da casa"
+     ],
+     "fixed": [
+      "Pão"
+     ],
+     "addons": [
+      {
+       "name": "Bacon extra",
+       "price": "4,00"
+      },
+      {
+       "name": "Ovo extra",
+       "price": "2,00"
+      },
+      {
+       "name": "Cheddar extra",
+       "price": "3,00"
+      },
+      {
+       "name": "Hambúrguer extra",
+       "price": "5,00"
+      },
+      {
+       "name": "Catupiry",
+       "price": "3,00"
+      }
+     ],
+     "featured": false
+    },
+    {
+     "name": "X BURGUER",
+     "price": "9,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/16989362856543b5ddc6fe7_75_75.jpeg",
+     "description": "Pão, hambúrguer bovino, queijo mussarela, alface, tomate, maionese da casa.",
+     "ingredients": [
+      "Pão",
+      "Hambúrguer bovino",
+      "Queijo mussarela",
+      "Alface",
+      "Tomate",
+      "Maionese da casa"
+     ],
+     "fixed": [
+      "Pão",
+      "Hambúrguer bovino"
+     ],
+     "addons": [
+      {
+       "name": "Bacon extra",
+       "price": "4,00"
+      },
+      {
+       "name": "Ovo extra",
+       "price": "2,00"
+      },
+      {
+       "name": "Cheddar extra",
+       "price": "3,00"
+      },
+      {
+       "name": "Hambúrguer extra",
+       "price": "5,00"
+      },
+      {
+       "name": "Catupiry",
+       "price": "3,00"
+      }
+     ],
+     "featured": false
+    },
+    {
+     "name": "EGGS",
+     "price": "10,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/164203490961df76ddd04ac_75_75.jpeg",
+     "description": "Pão, hambúrguer bovino, ovo, alface, tomate, maionese da casa.",
+     "ingredients": [
+      "Pão",
+      "Hambúrguer bovino",
+      "Ovo",
+      "Alface",
+      "Tomate",
+      "Maionese da casa"
+     ],
+     "fixed": [
+      "Pão",
+      "Hambúrguer bovino"
+     ],
+     "addons": [
+      {
+       "name": "Bacon extra",
+       "price": "4,00"
+      },
+      {
+       "name": "Ovo extra",
+       "price": "2,00"
+      },
+      {
+       "name": "Cheddar extra",
+       "price": "3,00"
+      },
+      {
+       "name": "Hambúrguer extra",
+       "price": "5,00"
+      },
+      {
+       "name": "Catupiry",
+       "price": "3,00"
+      }
+     ],
+     "featured": false
+    },
+    {
+     "name": "X FRANGO",
+     "price": "15,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/169280590164e62b0d17636_75_75.jpeg",
+     "description": "Pão, hambúrguer bovino, frango desfiado, queijo mussarela, alface, tomate, maionese da casa.",
+     "ingredients": [
+      "Pão",
+      "Hambúrguer bovino",
+      "Frango desfiado",
+      "Queijo mussarela",
+      "Alface",
+      "Tomate",
+      "Maionese da casa"
+     ],
+     "fixed": [
+      "Pão",
+      "Hambúrguer bovino"
+     ],
+     "addons": [
+      {
+       "name": "Bacon extra",
+       "price": "4,00"
+      },
+      {
+       "name": "Ovo extra",
+       "price": "2,00"
+      },
+      {
+       "name": "Cheddar extra",
+       "price": "3,00"
+      },
+      {
+       "name": "Hambúrguer extra",
+       "price": "5,00"
+      },
+      {
+       "name": "Catupiry",
+       "price": "3,00"
+      }
+     ],
+     "featured": false
+    },
+    {
+     "name": "X CALABRESA",
+     "price": "15,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/169280594064e62b34795c7_75_75.jpeg",
+     "description": "Pão, hambúrguer bovino, calabresa, queijo mussarela, alface, tomate, maionese da casa.",
+     "ingredients": [
+      "Pão",
+      "Hambúrguer bovino",
+      "Calabresa",
+      "Queijo mussarela",
+      "Alface",
+      "Tomate",
+      "Maionese da casa"
+     ],
+     "fixed": [
+      "Pão",
+      "Hambúrguer bovino"
+     ],
+     "addons": [
+      {
+       "name": "Bacon extra",
+       "price": "4,00"
+      },
+      {
+       "name": "Ovo extra",
+       "price": "2,00"
+      },
+      {
+       "name": "Cheddar extra",
+       "price": "3,00"
+      },
+      {
+       "name": "Hambúrguer extra",
+       "price": "5,00"
+      },
+      {
+       "name": "Catupiry",
+       "price": "3,00"
+      }
+     ],
+     "featured": false
+    },
+    {
+     "name": "X BACON",
+     "price": "15,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/169280597364e62b55634ef_75_75.jpeg",
+     "description": "Pão, hambúrguer bovino, bacon, queijo mussarela, alface, tomate, maionese da casa.",
+     "ingredients": [
+      "Pão",
+      "Hambúrguer bovino",
+      "Bacon",
+      "Queijo mussarela",
+      "Alface",
+      "Tomate",
+      "Maionese da casa"
+     ],
+     "fixed": [
+      "Pão",
+      "Hambúrguer bovino"
+     ],
+     "addons": [
+      {
+       "name": "Bacon extra",
+       "price": "4,00"
+      },
+      {
+       "name": "Ovo extra",
+       "price": "2,00"
+      },
+      {
+       "name": "Cheddar extra",
+       "price": "3,00"
+      },
+      {
+       "name": "Hambúrguer extra",
+       "price": "5,00"
+      },
+      {
+       "name": "Catupiry",
+       "price": "3,00"
+      }
+     ],
+     "featured": false
+    },
+    {
+     "name": "X CORAÇÃO",
+     "price": "18,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/1635734224617f52d0e1eee_75_75.jpeg",
+     "description": "Pão, hambúrguer bovino, coração de frango, queijo mussarela, alface, tomate, maionese da casa.",
+     "ingredients": [
+      "Pão",
+      "Hambúrguer bovino",
+      "Coração de frango",
+      "Queijo mussarela",
+      "Alface",
+      "Tomate",
+      "Maionese da casa"
+     ],
+     "fixed": [
+      "Pão",
+      "Hambúrguer bovino"
+     ],
+     "addons": [
+      {
+       "name": "Bacon extra",
+       "price": "4,00"
+      },
+      {
+       "name": "Ovo extra",
+       "price": "2,00"
+      },
+      {
+       "name": "Cheddar extra",
+       "price": "3,00"
+      },
+      {
+       "name": "Hambúrguer extra",
+       "price": "5,00"
+      },
+      {
+       "name": "Catupiry",
+       "price": "3,00"
+      }
+     ],
+     "featured": false
+    },
+    {
+     "name": "EGGS CALABRESA",
+     "price": "17,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/169280862564e635b1e5a9c_75_75.jpeg",
+     "description": "Pão, calabresa, ovo, alface, tomate, maionese da casa.",
+     "ingredients": [
+      "Pão",
+      "Calabresa",
+      "Ovo",
+      "Alface",
+      "Tomate",
+      "Maionese da casa"
+     ],
+     "fixed": [
+      "Pão"
+     ],
+     "addons": [
+      {
+       "name": "Bacon extra",
+       "price": "4,00"
+      },
+      {
+       "name": "Ovo extra",
+       "price": "2,00"
+      },
+      {
+       "name": "Cheddar extra",
+       "price": "3,00"
+      },
+      {
+       "name": "Hambúrguer extra",
+       "price": "5,00"
+      },
+      {
+       "name": "Catupiry",
+       "price": "3,00"
+      }
+     ],
+     "featured": false
+    },
+    {
+     "name": "X FILÉ",
+     "price": "16,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/164203182561df6ad12324a_75_75.jpeg",
+     "description": "Pão, hambúrguer bovino, filé, queijo mussarela, alface, tomate, maionese da casa.",
+     "ingredients": [
+      "Pão",
+      "Hambúrguer bovino",
+      "Filé",
+      "Queijo mussarela",
+      "Alface",
+      "Tomate",
+      "Maionese da casa"
+     ],
+     "fixed": [
+      "Pão",
+      "Hambúrguer bovino"
+     ],
+     "addons": [
+      {
+       "name": "Bacon extra",
+       "price": "4,00"
+      },
+      {
+       "name": "Ovo extra",
+       "price": "2,00"
+      },
+      {
+       "name": "Cheddar extra",
+       "price": "3,00"
+      },
+      {
+       "name": "Hambúrguer extra",
+       "price": "5,00"
+      },
+      {
+       "name": "Catupiry",
+       "price": "3,00"
+      }
+     ],
+     "featured": false
+    },
+    {
+     "name": "EGGS CORAÇÃO",
+     "price": "19,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/169280615764e62c0dab81f_75_75.jpeg",
+     "description": "Pão, coração de frango, ovo, alface, tomate, maionese da casa.",
+     "ingredients": [
+      "Pão",
+      "Coração de frango",
+      "Ovo",
+      "Alface",
+      "Tomate",
+      "Maionese da casa"
+     ],
+     "fixed": [
+      "Pão"
+     ],
+     "addons": [
+      {
+       "name": "Bacon extra",
+       "price": "4,00"
+      },
+      {
+       "name": "Ovo extra",
+       "price": "2,00"
+      },
+      {
+       "name": "Cheddar extra",
+       "price": "3,00"
+      },
+      {
+       "name": "Hambúrguer extra",
+       "price": "5,00"
+      },
+      {
+       "name": "Catupiry",
+       "price": "3,00"
+      }
+     ],
+     "featured": false
+    },
+    {
+     "name": "EGGS BACON",
+     "price": "17,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/169280620764e62c3fc762e_75_75.jpeg",
+     "description": "Pão, bacon, ovo, alface, tomate, maionese da casa.",
+     "ingredients": [
+      "Pão",
+      "Bacon",
+      "Ovo",
+      "Alface",
+      "Tomate",
+      "Maionese da casa"
+     ],
+     "fixed": [
+      "Pão"
+     ],
+     "addons": [
+      {
+       "name": "Bacon extra",
+       "price": "4,00"
+      },
+      {
+       "name": "Ovo extra",
+       "price": "2,00"
+      },
+      {
+       "name": "Cheddar extra",
+       "price": "3,00"
+      },
+      {
+       "name": "Hambúrguer extra",
+       "price": "5,00"
+      },
+      {
+       "name": "Catupiry",
+       "price": "3,00"
+      }
+     ],
+     "featured": false
+    },
+    {
+     "name": "EGGS FILE",
+     "price": "18,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/17484607006837649c35fd9_75_75.jpeg",
+     "description": "Pão, filé, ovo, alface, tomate, maionese da casa.",
+     "ingredients": [
+      "Pão",
+      "Filé",
+      "Ovo",
+      "Alface",
+      "Tomate",
+      "Maionese da casa"
+     ],
+     "fixed": [
+      "Pão"
+     ],
+     "addons": [
+      {
+       "name": "Bacon extra",
+       "price": "4,00"
+      },
+      {
+       "name": "Ovo extra",
+       "price": "2,00"
+      },
+      {
+       "name": "Cheddar extra",
+       "price": "3,00"
+      },
+      {
+       "name": "Hambúrguer extra",
+       "price": "5,00"
+      },
+      {
+       "name": "Catupiry",
+       "price": "3,00"
+      }
+     ],
+     "featured": false
+    },
+    {
+     "name": "LA CHAPA",
+     "price": "22,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/169280625064e62c6acff9e_75_75.jpeg",
+     "description": "Pão, hambúrguer bovino, ovo, queijo mussarela, alface, tomate, maionese da casa, presunto, milho, batata palha.",
+     "ingredients": [
+      "Pão",
+      "Hambúrguer bovino",
+      "Ovo",
+      "Queijo mussarela",
+      "Alface",
+      "Tomate",
+      "Maionese da casa",
+      "Presunto",
+      "Milho",
+      "Batata palha"
+     ],
+     "fixed": [
+      "Pão",
+      "Hambúrguer bovino"
+     ],
+     "addons": [
+      {
+       "name": "Bacon extra",
+       "price": "4,00"
+      },
+      {
+       "name": "Ovo extra",
+       "price": "2,00"
+      },
+      {
+       "name": "Cheddar extra",
+       "price": "3,00"
+      },
+      {
+       "name": "Hambúrguer extra",
+       "price": "5,00"
+      },
+      {
+       "name": "Catupiry",
+       "price": "3,00"
+      }
+     ],
+     "featured": false
+    },
+    {
+     "name": "BARÃO DE IPANEMA",
+     "price": "25,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/169280628364e62c8b469b5_75_75.jpeg",
+     "description": "Pão, hambúrguer bovino, queijo mussarela, alface, tomate, maionese da casa, presunto, milho, batata palha.",
+     "ingredients": [
+      "Pão",
+      "Hambúrguer bovino",
+      "Queijo mussarela",
+      "Alface",
+      "Tomate",
+      "Maionese da casa",
+      "Presunto",
+      "Milho",
+      "Batata palha"
+     ],
+     "fixed": [
+      "Pão",
+      "Hambúrguer bovino"
+     ],
+     "addons": [
+      {
+       "name": "Bacon extra",
+       "price": "4,00"
+      },
+      {
+       "name": "Ovo extra",
+       "price": "2,00"
+      },
+      {
+       "name": "Cheddar extra",
+       "price": "3,00"
+      },
+      {
+       "name": "Hambúrguer extra",
+       "price": "5,00"
+      },
+      {
+       "name": "Catupiry",
+       "price": "3,00"
+      }
+     ],
+     "featured": false
+    },
+    {
+     "name": "DA CASA",
+     "price": "26,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/169280631464e62caa33158_75_75.jpeg",
+     "description": "Pão, hambúrguer bovino, ovo, queijo mussarela, alface, tomate, maionese da casa, presunto, milho, batata palha.",
+     "ingredients": [
+      "Pão",
+      "Hambúrguer bovino",
+      "Ovo",
+      "Queijo mussarela",
+      "Alface",
+      "Tomate",
+      "Maionese da casa",
+      "Presunto",
+      "Milho",
+      "Batata palha"
+     ],
+     "fixed": [
+      "Pão",
+      "Hambúrguer bovino"
+     ],
+     "addons": [
+      {
+       "name": "Bacon extra",
+       "price": "4,00"
+      },
+      {
+       "name": "Ovo extra",
+       "price": "2,00"
+      },
+      {
+       "name": "Cheddar extra",
+       "price": "3,00"
+      },
+      {
+       "name": "Hambúrguer extra",
+       "price": "5,00"
+      },
+      {
+       "name": "Catupiry",
+       "price": "3,00"
+      }
+     ],
+     "featured": true
+    },
+    {
+     "name": "CALABRESA ESPECIAL",
+     "price": "23,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/169280856964e63579db26b_75_75.jpeg",
+     "description": "Pão, calabresa, ovo, queijo mussarela, alface, tomate, maionese da casa, presunto, milho, batata palha.",
+     "ingredients": [
+      "Pão",
+      "Calabresa",
+      "Ovo",
+      "Queijo mussarela",
+      "Alface",
+      "Tomate",
+      "Maionese da casa",
+      "Presunto",
+      "Milho",
+      "Batata palha"
+     ],
+     "fixed": [
+      "Pão"
+     ],
+     "addons": [
+      {
+       "name": "Bacon extra",
+       "price": "4,00"
+      },
+      {
+       "name": "Ovo extra",
+       "price": "2,00"
+      },
+      {
+       "name": "Cheddar extra",
+       "price": "3,00"
+      },
+      {
+       "name": "Hambúrguer extra",
+       "price": "5,00"
+      },
+      {
+       "name": "Catupiry",
+       "price": "3,00"
+      }
+     ],
+     "featured": false
+    },
+    {
+     "name": "CALAFRANGO",
+     "price": "19,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/1748460749683764cdce417_75_75.jpeg",
+     "description": "Pão, calabresa, frango desfiado, queijo mussarela, alface, tomate, maionese da casa.",
+     "ingredients": [
+      "Pão",
+      "Calabresa",
+      "Frango desfiado",
+      "Queijo mussarela",
+      "Alface",
+      "Tomate",
+      "Maionese da casa"
+     ],
+     "fixed": [
+      "Pão"
+     ],
+     "addons": [
+      {
+       "name": "Bacon extra",
+       "price": "4,00"
+      },
+      {
+       "name": "Ovo extra",
+       "price": "2,00"
+      },
+      {
+       "name": "Cheddar extra",
+       "price": "3,00"
+      },
+      {
+       "name": "Hambúrguer extra",
+       "price": "5,00"
+      },
+      {
+       "name": "Catupiry",
+       "price": "3,00"
+      }
+     ],
+     "featured": false
+    },
+    {
+     "name": "CORAÇÃO ESPECIAL",
+     "price": "24,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/169280641064e62d0a8480c_75_75.jpeg",
+     "description": "Pão, coração de frango, ovo, queijo mussarela, alface, tomate, maionese da casa, presunto, milho, batata palha.",
+     "ingredients": [
+      "Pão",
+      "Coração de frango",
+      "Ovo",
+      "Queijo mussarela",
+      "Alface",
+      "Tomate",
+      "Maionese da casa",
+      "Presunto",
+      "Milho",
+      "Batata palha"
+     ],
+     "fixed": [
+      "Pão"
+     ],
+     "addons": [
+      {
+       "name": "Bacon extra",
+       "price": "4,00"
+      },
+      {
+       "name": "Ovo extra",
+       "price": "2,00"
+      },
+      {
+       "name": "Cheddar extra",
+       "price": "3,00"
+      },
+      {
+       "name": "Hambúrguer extra",
+       "price": "5,00"
+      },
+      {
+       "name": "Catupiry",
+       "price": "3,00"
+      }
+     ],
+     "featured": false
+    },
+    {
+     "name": "FRANPIRY",
+     "price": "19,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/1721340381669991dd52a26_75_75.jpeg",
+     "description": "Pão, frango desfiado, catupiry, queijo mussarela, alface, tomate, maionese da casa.",
+     "ingredients": [
+      "Pão",
+      "Frango desfiado",
+      "Catupiry",
+      "Queijo mussarela",
+      "Alface",
+      "Tomate",
+      "Maionese da casa"
+     ],
+     "fixed": [
+      "Pão"
+     ],
+     "addons": [
+      {
+       "name": "Bacon extra",
+       "price": "4,00"
+      },
+      {
+       "name": "Ovo extra",
+       "price": "2,00"
+      },
+      {
+       "name": "Cheddar extra",
+       "price": "3,00"
+      },
+      {
+       "name": "Hambúrguer extra",
+       "price": "5,00"
+      },
+      {
+       "name": "Catupiry",
+       "price": "3,00"
+      }
+     ],
+     "featured": false
+    },
+    {
+     "name": "EGGS TOSCANA",
+     "price": "18,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/169292993464e80f8e96dc4_75_75.jpeg",
+     "description": "Pão, linguiça toscana, ovo, alface, tomate, maionese da casa.",
+     "ingredients": [
+      "Pão",
+      "Linguiça toscana",
+      "Ovo",
+      "Alface",
+      "Tomate",
+      "Maionese da casa"
+     ],
+     "fixed": [
+      "Pão"
+     ],
+     "addons": [
+      {
+       "name": "Bacon extra",
+       "price": "4,00"
+      },
+      {
+       "name": "Ovo extra",
+       "price": "2,00"
+      },
+      {
+       "name": "Cheddar extra",
+       "price": "3,00"
+      },
+      {
+       "name": "Hambúrguer extra",
+       "price": "5,00"
+      },
+      {
+       "name": "Catupiry",
+       "price": "3,00"
+      }
+     ],
+     "featured": false
+    },
+    {
+     "name": "X TOSCANA",
+     "price": "16,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/164203560061df7990e094f_75_75.jpeg",
+     "description": "Pão, hambúrguer bovino, linguiça toscana, queijo mussarela, alface, tomate, maionese da casa.",
+     "ingredients": [
+      "Pão",
+      "Hambúrguer bovino",
+      "Linguiça toscana",
+      "Queijo mussarela",
+      "Alface",
+      "Tomate",
+      "Maionese da casa"
+     ],
+     "fixed": [
+      "Pão",
+      "Hambúrguer bovino"
+     ],
+     "addons": [
+      {
+       "name": "Bacon extra",
+       "price": "4,00"
+      },
+      {
+       "name": "Ovo extra",
+       "price": "2,00"
+      },
+      {
+       "name": "Cheddar extra",
+       "price": "3,00"
+      },
+      {
+       "name": "Hambúrguer extra",
+       "price": "5,00"
+      },
+      {
+       "name": "Catupiry",
+       "price": "3,00"
+      }
+     ],
+     "featured": false
+    },
+    {
+     "name": "FRANGO ESPECIAL",
+     "price": "22,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/169280836764e634afac020_75_75.jpeg",
+     "description": "Pão, frango desfiado, ovo, queijo mussarela, alface, tomate, maionese da casa, presunto, milho, batata palha.",
+     "ingredients": [
+      "Pão",
+      "Frango desfiado",
+      "Ovo",
+      "Queijo mussarela",
+      "Alface",
+      "Tomate",
+      "Maionese da casa",
+      "Presunto",
+      "Milho",
+      "Batata palha"
+     ],
+     "fixed": [
+      "Pão"
+     ],
+     "addons": [
+      {
+       "name": "Bacon extra",
+       "price": "4,00"
+      },
+      {
+       "name": "Ovo extra",
+       "price": "2,00"
+      },
+      {
+       "name": "Cheddar extra",
+       "price": "3,00"
+      },
+      {
+       "name": "Hambúrguer extra",
+       "price": "5,00"
+      },
+      {
+       "name": "Catupiry",
+       "price": "3,00"
+      }
+     ],
+     "featured": false
+    },
+    {
+     "name": "TOSCANA ESPECIAL",
+     "price": "23,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/169280839064e634c6916a6_75_75.jpeg",
+     "description": "Pão, linguiça toscana, ovo, queijo mussarela, alface, tomate, maionese da casa, presunto, milho, batata palha.",
+     "ingredients": [
+      "Pão",
+      "Linguiça toscana",
+      "Ovo",
+      "Queijo mussarela",
+      "Alface",
+      "Tomate",
+      "Maionese da casa",
+      "Presunto",
+      "Milho",
+      "Batata palha"
+     ],
+     "fixed": [
+      "Pão"
+     ],
+     "addons": [
+      {
+       "name": "Bacon extra",
+       "price": "4,00"
+      },
+      {
+       "name": "Ovo extra",
+       "price": "2,00"
+      },
+      {
+       "name": "Cheddar extra",
+       "price": "3,00"
+      },
+      {
+       "name": "Hambúrguer extra",
+       "price": "5,00"
+      },
+      {
+       "name": "Catupiry",
+       "price": "3,00"
+      }
+     ],
+     "featured": false
+    },
+    {
+     "name": "FRANBURGUER ESPECIAL",
+     "price": "24,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/169280841264e634dc190bc_75_75.jpeg",
+     "description": "Pão, hambúrguer bovino, frango desfiado, ovo, queijo mussarela, alface, tomate, maionese da casa, presunto, milho, batata palha.",
+     "ingredients": [
+      "Pão",
+      "Hambúrguer bovino",
+      "Frango desfiado",
+      "Ovo",
+      "Queijo mussarela",
+      "Alface",
+      "Tomate",
+      "Maionese da casa",
+      "Presunto",
+      "Milho",
+      "Batata palha"
+     ],
+     "fixed": [
+      "Pão",
+      "Hambúrguer bovino"
+     ],
+     "addons": [
+      {
+       "name": "Bacon extra",
+       "price": "4,00"
+      },
+      {
+       "name": "Ovo extra",
+       "price": "2,00"
+      },
+      {
+       "name": "Cheddar extra",
+       "price": "3,00"
+      },
+      {
+       "name": "Hambúrguer extra",
+       "price": "5,00"
+      },
+      {
+       "name": "Catupiry",
+       "price": "3,00"
+      }
+     ],
+     "featured": false
+    },
+    {
+     "name": "FILÉ ESPECIAL",
+     "price": "23,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/169280844964e6350164c8f_75_75.jpeg",
+     "description": "Pão, filé, ovo, queijo mussarela, alface, tomate, maionese da casa, presunto, milho, batata palha.",
+     "ingredients": [
+      "Pão",
+      "Filé",
+      "Ovo",
+      "Queijo mussarela",
+      "Alface",
+      "Tomate",
+      "Maionese da casa",
+      "Presunto",
+      "Milho",
+      "Batata palha"
+     ],
+     "fixed": [
+      "Pão"
+     ],
+     "addons": [
+      {
+       "name": "Bacon extra",
+       "price": "4,00"
+      },
+      {
+       "name": "Ovo extra",
+       "price": "2,00"
+      },
+      {
+       "name": "Cheddar extra",
+       "price": "3,00"
+      },
+      {
+       "name": "Hambúrguer extra",
+       "price": "5,00"
+      },
+      {
+       "name": "Catupiry",
+       "price": "3,00"
+      }
+     ],
+     "featured": false
+    },
+    {
+     "name": "GARAGE BURGER",
+     "price": "37,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/1680037911642358173bd5d_75_75.jpeg",
+     "description": "Pão, hambúrguer bovino, ovo, queijo mussarela, alface, tomate, maionese da casa, presunto, milho, batata palha, bacon, calabresa, frango desfiado.",
+     "ingredients": [
+      "Pão",
+      "Hambúrguer bovino",
+      "Ovo",
+      "Queijo mussarela",
+      "Alface",
+      "Tomate",
+      "Maionese da casa",
+      "Presunto",
+      "Milho",
+      "Batata palha",
+      "Bacon",
+      "Calabresa",
+      "Frango desfiado"
+     ],
+     "fixed": [
+      "Pão",
+      "Hambúrguer bovino"
+     ],
+     "addons": [
+      {
+       "name": "Bacon extra",
+       "price": "4,00"
+      },
+      {
+       "name": "Ovo extra",
+       "price": "2,00"
+      },
+      {
+       "name": "Cheddar extra",
+       "price": "3,00"
+      },
+      {
+       "name": "Hambúrguer extra",
+       "price": "5,00"
+      },
+      {
+       "name": "Catupiry",
+       "price": "3,00"
+      }
+     ],
+     "featured": true
+    },
+    {
+     "name": "X-FRANGO CHEDDAR",
+     "price": "18,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/1748460770683764e2d00f1_75_75.jpeg",
+     "description": "Pão, frango desfiado, cheddar, alface, tomate, maionese da casa.",
+     "ingredients": [
+      "Pão",
+      "Frango desfiado",
+      "Cheddar",
+      "Alface",
+      "Tomate",
+      "Maionese da casa"
+     ],
+     "fixed": [
+      "Pão"
+     ],
+     "addons": [
+      {
+       "name": "Bacon extra",
+       "price": "4,00"
+      },
+      {
+       "name": "Ovo extra",
+       "price": "2,00"
+      },
+      {
+       "name": "Cheddar extra",
+       "price": "3,00"
+      },
+      {
+       "name": "Hambúrguer extra",
+       "price": "5,00"
+      },
+      {
+       "name": "Catupiry",
+       "price": "3,00"
+      }
+     ],
+     "featured": false
+    },
+    {
+     "name": "FILÉ COM BACON ESPECIAL",
+     "price": "23,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/1721340387669991e37e2cd_75_75.jpeg",
+     "description": "Pão, filé, bacon, ovo, queijo mussarela, alface, tomate, maionese da casa, presunto, milho, batata palha.",
+     "ingredients": [
+      "Pão",
+      "Filé",
+      "Bacon",
+      "Ovo",
+      "Queijo mussarela",
+      "Alface",
+      "Tomate",
+      "Maionese da casa",
+      "Presunto",
+      "Milho",
+      "Batata palha"
+     ],
+     "fixed": [
+      "Pão"
+     ],
+     "addons": [
+      {
+       "name": "Bacon extra",
+       "price": "4,00"
+      },
+      {
+       "name": "Ovo extra",
+       "price": "2,00"
+      },
+      {
+       "name": "Cheddar extra",
+       "price": "3,00"
+      },
+      {
+       "name": "Hambúrguer extra",
+       "price": "5,00"
+      },
+      {
+       "name": "Catupiry",
+       "price": "3,00"
+      }
+     ],
+     "featured": false
+    }
+   ]
+  },
+  {
+   "name": "Cachorro-Quente",
+   "items": [
+    {
+     "name": "Cachorro Quente no Prato",
+     "price": "10,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/164202361461df4abeb9218_75_75.jpeg",
+     "description": "Salsicha no molho, milho, ervilha, batata palha e queijo ralado, servido no prato.",
+     "ingredients": [
+      "Pão",
+      "Salsicha",
+      "Molho de tomate",
+      "Milho",
+      "Ervilha",
+      "Batata palha",
+      "Queijo ralado"
+     ],
+     "fixed": [
+      "Salsicha"
+     ],
+     "featured": false
+    }
+   ]
+  },
+  {
+   "name": "Batata Frita",
+   "items": [
+    {
+     "name": "Batata frita C/cheddar &Calabresa",
+     "price": "20,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/169292999264e80fc839c34_75_75.jpeg",
+     "description": "",
+     "featured": false
+    },
+    {
+     "name": "Batata frita tradicional P",
+     "price": "8,00",
+     "image": null,
+     "description": "",
+     "featured": false
+    },
+    {
+     "name": "Batata frita tradicional M",
+     "price": "12,00",
+     "image": null,
+     "description": "",
+     "featured": false
+    },
+    {
+     "name": "Batata Frita c/ Cheddar & Bacon",
+     "price": "20,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/169290941064e7bf623973e_75_75.jpeg",
+     "description": "",
+     "featured": false
+    },
+    {
+     "name": "ANÉIS DE CEBOLA 6 unidades",
+     "price": "10,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/17907005826abbec2647d56_75_75.jpeg",
+     "description": "",
+     "featured": false
+    }
+   ]
+  },
+  {
+   "name": "Refrigerantes 1L",
+   "items": [
+    {
+     "name": "COCA 1 L",
+     "price": "10,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/16989311296543a1b925ac6_75_75.jpeg",
+     "description": "",
+     "featured": false
+    },
+    {
+     "name": "GUARANÁ ANTÁRTICA 1L",
+     "price": "8,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/16989311766543a1e8ac44b_75_75.jpeg",
+     "description": "",
+     "featured": false
+    },
+    {
+     "name": "REFRI INDAIÁ 1 L",
+     "price": "6,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/1765226691693738c30d97c_75_75.jpeg",
+     "description": "",
+     "featured": false
+    }
+   ]
+  },
+  {
+   "name": "Sucos com Leite",
+   "items": [
+    {
+     "name": "MARACUJA C/LEITE",
+     "price": "7,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/17484610686837660c14f9c_75_75.jpeg",
+     "description": "",
+     "featured": false
+    },
+    {
+     "name": "MANGA C/LEITE",
+     "price": "6,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/17484610846837661c36c85_75_75.jpeg",
+     "description": "",
+     "featured": false
+    },
+    {
+     "name": "MANGABA. C/LEITE",
+     "price": "6,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/17484611646837666c7caff_75_75.jpeg",
+     "description": "",
+     "featured": false
+    },
+    {
+     "name": "UMBU.C/LEITE",
+     "price": "6,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/174846117668376678a8476_75_75.jpeg",
+     "description": "",
+     "featured": false
+    },
+    {
+     "name": "GRAVIOLA C/LEITE",
+     "price": "6,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/174846118968376685a7f77_75_75.jpeg",
+     "description": "",
+     "featured": false
+    },
+    {
+     "name": "CAJA C/LEITE",
+     "price": "6,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/17484611986837668e63235_75_75.jpeg",
+     "description": "",
+     "featured": false
+    },
+    {
+     "name": "CUPUAÇU C/LEITE",
+     "price": "6,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/17484612106837669a744c4_75_75.jpeg",
+     "description": "",
+     "featured": false
+    },
+    {
+     "name": "AMEIXA C/LEITE",
+     "price": "6,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/1748461220683766a49786b_75_75.jpeg",
+     "description": "",
+     "featured": false
+    },
+    {
+     "name": "CACAU C/LEITE",
+     "price": "6,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/1748461229683766ad02fe5_75_75.jpeg",
+     "description": "",
+     "featured": false
+    },
+    {
+     "name": "GOIABA C/LEITE",
+     "price": "6,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/172134042266999206cb0d6_75_75.jpeg",
+     "description": "",
+     "featured": false
+    },
+    {
+     "name": "ACEROLA C/LEITE",
+     "price": "6,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/172134042566999209102cf_75_75.jpeg",
+     "description": "",
+     "featured": false
+    }
+   ]
+  },
+  {
+   "name": "Sucos sem Leite",
+   "items": [
+    {
+     "name": "MARACUJÁ S/LEITE",
+     "price": "7,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/17484613486837672413de0_75_75.jpeg",
+     "description": "",
+     "featured": false
+    },
+    {
+     "name": "MANGA S/LEITE",
+     "price": "6,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/17484613406837671cb217c_75_75.jpeg",
+     "description": "",
+     "featured": false
+    },
+    {
+     "name": "GRAVIOLA S/LEITE",
+     "price": "6,00",
+     "image": null,
+     "description": "",
+     "featured": false
+    },
+    {
+     "name": "MANGABA S/LEITE",
+     "price": "6,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/174846132968376711d5b8b_75_75.jpeg",
+     "description": "",
+     "featured": false
+    },
+    {
+     "name": "UMBU S/LEITE",
+     "price": "6,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/1748461320683767080e45f_75_75.jpeg",
+     "description": "",
+     "featured": false
+    },
+    {
+     "name": "CAJA S/LEITE",
+     "price": "6,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/1748461311683766ff38ef8_75_75.jpeg",
+     "description": "",
+     "featured": false
+    },
+    {
+     "name": "CUPUAÇU S/LEITE",
+     "price": "6,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/1748461304683766f85df78_75_75.jpeg",
+     "description": "",
+     "featured": false
+    },
+    {
+     "name": "AMEIXA S/LEITE",
+     "price": "6,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/1748461293683766ed4cfc9_75_75.jpeg",
+     "description": "",
+     "featured": false
+    },
+    {
+     "name": "CACAU S/LEITE",
+     "price": "6,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/1748461285683766e504048_75_75.jpeg",
+     "description": "",
+     "featured": false
+    },
+    {
+     "name": "GOIABA S/LEITE",
+     "price": "6,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/172134044166999219df97a_75_75.jpeg",
+     "description": "",
+     "featured": false
+    },
+    {
+     "name": "ACEROLA S/LEITE",
+     "price": "6,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/17213404436699921b8991d_75_75.jpeg",
+     "description": "",
+     "featured": false
+    }
+   ]
+  },
+  {
+   "name": "Bomba Baiana",
+   "items": [
+    {
+     "name": "Bomba açaí + guaraná energético",
+     "price": "8,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/170554479965a88c5f91b1f_75_75.jpeg",
+     "description": "",
+     "featured": false
+    },
+    {
+     "name": "Bomba Baiana Morango",
+     "price": "8,00",
+     "image": "https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/itens/170554497465a88d0ecbbf6_75_75.jpeg",
+     "description": "",
+     "featured": false
+    }
+   ]
+  },
+  {
+   "name": "Refrigerante em Lata",
+   "items": [
+    {
+     "name": "COCA LATA 350ml",
+     "price": "5,00",
+     "image": null,
+     "description": "",
+     "featured": false
+    },
+    {
+     "name": "GUARANÁ ANTÁRTICA 350ml",
+     "price": "5,00",
+     "image": null,
+     "description": "",
+     "featured": false
+    },
+    {
+     "name": "Fanta em lata",
+     "price": "5,00",
+     "image": null,
+     "description": "",
+     "featured": false
+    },
+    {
+     "name": "Sprite",
+     "price": "5,00",
+     "image": null,
+     "description": "",
+     "featured": false
+    },
+    {
+     "name": "Coca zero",
+     "price": "5,00",
+     "image": null,
+     "description": "",
+     "featured": false
+    }
+   ]
+  }
+ ]
+}
