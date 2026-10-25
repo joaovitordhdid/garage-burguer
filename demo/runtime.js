@@ -12,7 +12,7 @@ function saveCookies(c) { try { localStorage.setItem(COOKIES, JSON.stringify(c))
 
 const ready = initSqlJs().then(SQL => {
   globalThis.__SQL = SQL;
-  Object.assign(process.env, { ADMIN_EMAIL: 'dono@garageburger.com', ADMIN_PASSWORD: 'garage123', NODE_ENV: 'demo' });
+  Object.assign(process.env, { ADMIN_EMAIL: 'dono@garageburger.com', ADMIN_PASSWORD: 'garage123', NODE_ENV: 'production' });
   const app = require('../server.js');
   globalThis.__gbDb.save();
   return app;
@@ -124,40 +124,3 @@ new MutationObserver(muts => {
     }
   }
 }).observe(document.documentElement, { childList: true, subtree: true });
-
-// Faixa de demonstração (some sozinha) + dica de login no painel
-function banner() {
-  const form = document.getElementById('login-form');
-  if (form && !document.getElementById('gb-demo-hint')) {
-    const hint = document.createElement('p');
-    hint.id = 'gb-demo-hint';
-    hint.setAttribute('style', 'margin:0;padding:10px 12px;border-radius:10px;background:rgba(255,180,0,.12);border:1px dashed #ffb400;color:#ffcf5a;font:500 13px/1.4 system-ui,sans-serif');
-    hint.innerHTML = 'Demonstração: entre com <b>dono@garageburger.com</b> e a senha <b>garage123</b>.';
-    const err = document.getElementById('login-error');
-    form.insertBefore(hint, err || form.lastElementChild);
-    const em = form.querySelector('input[type=email]'); if (em && !em.value) em.value = 'dono@garageburger.com';
-  }
-  if (document.getElementById('gb-demo-bar')) return;
-  const bar = document.createElement('div');
-  bar.id = 'gb-demo-bar';
-  bar.setAttribute('style', 'position:fixed;left:50%;top:8px;transform:translateX(-50%);z-index:2147483647;max-width:calc(100% - 16px);font:600 11px/1.3 system-ui,sans-serif;color:#111;background:#ffb400;border-radius:999px;padding:5px 6px 5px 12px;box-shadow:0 4px 14px rgba(0,0,0,.4);display:flex;gap:8px;align-items:center;transition:opacity .4s');
-  bar.innerHTML = '<span>DEMONSTRAÇÃO · os dados ficam só neste navegador</span>';
-  const btn = (label, fn, extra = '') => {
-    const b = document.createElement('button');
-    b.textContent = label;
-    b.setAttribute('style', 'font:inherit;border:0;border-radius:999px;padding:3px 9px;cursor:pointer;' + extra);
-    b.addEventListener('click', fn);
-    return b;
-  };
-  bar.append(
-    btn('Zerar demo', () => {
-      if (!confirm('Apagar pedidos e alterações desta demonstração?')) return;
-      ['gb_demo_db', COOKIES, 'gb_cart', 'gb_last_order'].forEach(k => { try { localStorage.removeItem(k); } catch {} });
-      location.reload();
-    }, 'background:#111;color:#ffb400'),
-    btn('×', () => bar.remove(), 'background:none;color:#111;font-size:14px;padding:0 6px'),
-  );
-  document.body.appendChild(bar);
-  setTimeout(() => { bar.style.opacity = '0'; setTimeout(() => bar.remove(), 450); }, 7000);
-}
-if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', banner); else banner();

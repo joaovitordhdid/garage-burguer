@@ -22,7 +22,7 @@ esbuild.buildSync({
     helmet: S('noop.js'), 'cookie-parser': S('noop.js'), 'express-rate-limit': S('noop.js'),
   },
   inject: [path.join(__dirname, 'buffer-inject.js')],
-  define: { __dirname: '"/srv"', 'require.main': 'undefined', 'process.env.NODE_ENV': '"demo"' },
+  define: { __dirname: '"/srv"', 'require.main': 'undefined', 'process.env.NODE_ENV': '"production"' },
   logLevel: 'warning',
 });
 
