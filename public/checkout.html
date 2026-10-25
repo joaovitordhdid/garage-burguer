@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0d0d0f">
+  <title>Finalizar pedido · Garage Burger</title>
+  <meta name="description" content="Finalize seu pedido da Garage Burger em menos de um minuto.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap">
+  <link rel="stylesheet" href="/css/theme.css">
+  <link rel="stylesheet" href="/css/checkout.css">
+  <script src="/js/cart.js" defer></script>
+  <script src="/js/checkout.js" defer></script>
+</head>
+<body class="ck">
+  <header class="ck-top">
+    <a class="ck-back" href="/" aria-label="Voltar ao cardápio">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg>
+      <span>Cardápio</span>
+    </a>
+    <div class="ck-brand">GARAGE<span>BURGER</span></div>
+    <span class="ck-secure" title="Seus dados são enviados com segurança">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10V7a5 5 0 0110 0v3M5 10h14v11H5z" /></svg>
+    </span>
+  </header>
+
+  <nav class="ck-steps" aria-label="Etapas do pedido">
+    <ol>
+      <li data-step="dados"><span class="ck-step-n">1</span><span class="ck-step-l">Dados</span></li>
+      <li data-step="entrega"><span class="ck-step-n">2</span><span class="ck-step-l">Entrega</span></li>
+      <li data-step="pagamento"><span class="ck-step-n">3</span><span class="ck-step-l">Pagamento</span></li>
+    </ol>
+    <div class="ck-steps-bar"><i id="stepsFill"></i></div>
+  </nav>
+
+  <div class="ck-closed" id="closedBanner" hidden>
+    <strong>Estamos fechados agora.</strong> Você pode revisar o pedido, mas só conseguimos confirmar no horário de funcionamento.
+  </div>
+
+  <!-- Carrinho vazio -->
+  <section class="ck-empty" id="emptyState" hidden>
+    <div class="ck-empty-icon" aria-hidden="true">
+      <svg viewBox="0 0 64 64"><path d="M10 30c0-11 10-18 22-18s22 7 22 18z"/><rect x="8" y="34" width="48" height="6" rx="3"/><path d="M10 44h44c0 5-4 8-9 8H19c-5 0-9-3-9-8z"/></svg>
+    </div>
+    <h1>Seu carrinho está vazio</h1>
+    <p>Escolha seus lanches no cardápio e volte aqui para finalizar.</p>
+    <a class="gb-btn" href="/">Ver cardápio</a>
+  </section>
+
+  <main class="ck-main" id="checkout" hidden>
+    <form id="form" novalidate>
+      <!-- Resumo -->
+      <section class="ck-card ck-summary" aria-labelledby="sumTitle">
+        <div class="ck-card-head">
+          <h2 id="sumTitle">Seu pedido</h2>
+          <a class="ck-link" href="/">+ Adicionar itens</a>
+        </div>
+        <ul class="ck-items" id="items"></ul>
+        <dl class="ck-totals">
+          <div><dt>Subtotal</dt><dd id="tSubtotal">—</dd></div>
+          <div id="feeRow"><dt>Entrega</dt><dd id="tFee">—</dd></div>
+          <div class="ck-total"><dt>Total</dt><dd id="tTotal">—</dd></div>
+        </dl>
+        <p class="ck-min" id="minWarn" hidden></p>
+      </section>
+
+      <!-- 1. Dados -->
+      <section class="ck-card" id="sec-dados" data-section="dados" aria-labelledby="dadosTitle">
+        <div class="ck-card-head">
+          <h2 id="dadosTitle"><span class="ck-badge">1</span> Seus dados</h2>
+          <span class="ck-done" aria-hidden="true">✓</span>
+        </div>
+        <div class="ck-field">
+          <label for="name">Nome completo</label>
+          <input class="gb-input" id="name" name="name" autocomplete="name" autocapitalize="words" maxlength="80" placeholder="Ex.: Maria da Silva" required>
+          <p class="ck-err" id="err-name" role="alert"></p>
+        </div>
+        <div class="ck-row">
+          <div class="ck-field">
+            <label for="phone">WhatsApp</label>
+            <input class="gb-input" id="phone" name="phone" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="(00) 00000-0000" maxlength="15" required>
+            <p class="ck-err" id="err-phone" role="alert"></p>
+          </div>
+          <div class="ck-field">
+            <label for="cpf">CPF <small>para a nota fiscal</small></label>
+            <input class="gb-input" id="cpf" name="cpf" inputmode="numeric" autocomplete="off" placeholder="000.000.000-00" maxlength="14" required>
+            <p class="ck-err" id="err-cpf" role="alert"></p>
+          </div>
+        </div>
+        <label class="ck-check">
+          <input type="checkbox" id="remember">
+          <span>Lembrar meus dados neste aparelho (inclui CPF)</span>
+        </label>
+      </section>
+
+      <!-- 2. Entrega -->
+      <section class="ck-card" id="sec-entrega" data-section="entrega" aria-labelledby="entregaTitle">
+        <div class="ck-card-head">
+          <h2 id="entregaTitle"><span class="ck-badge">2</span> Entrega</h2>
+          <span class="ck-done" aria-hidden="true">✓</span>
+        </div>
+        <div class="ck-seg" role="radiogroup" aria-label="Como você quer receber">
+          <label class="ck-seg-opt">
+            <input type="radio" name="delivery_type" value="delivery" checked>
+            <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 16V7h11v9M14 10h4l3 3v3h-7"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
+              <b>Entrega</b><small id="segFee">—</small></span>
+          </label>
+          <label class="ck-seg-opt">
+            <input type="radio" name="delivery_type" value="retirada">
+            <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10l2-5h12l2 5M4 10v10h16V10M4 10h16M9 20v-5h6v5"/></svg>
+              <b>Retirar no balcão</b><small>Grátis</small></span>
+          </label>
+        </div>
+        <p class="ck-eta" id="eta"></p>
+
+        <div id="deliveryBox">
+          <button type="button" class="ck-geo" id="geoBtn">
+            <span class="ck-geo-pulse" aria-hidden="true"></span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0119 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+            <span class="ck-geo-text"><b id="geoLabel">Usar minha localização atual</b><small id="geoSub">Obrigatório para o entregador te encontrar</small></span>
+          </button>
+          <div class="ck-geo-msg" id="geoMsg" role="status" aria-live="polite" hidden></div>
+          <p class="ck-err" id="err-location" role="alert"></p>
+
+          <div class="ck-map" id="mapWrap" hidden>
+            <iframe id="map" title="Mapa com a sua localização" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <span class="ck-map-acc" id="mapAcc"></span>
+          </div>
+
+          <div class="ck-address" id="addressFields">
+            <div class="ck-row ck-row-street">
+              <div class="ck-field">
+                <label for="street">Rua</label>
+                <input class="gb-input" id="street" autocomplete="address-line1" maxlength="120" placeholder="Rua / Avenida">
+                <p class="ck-err" id="err-street" role="alert"></p>
+              </div>
+              <div class="ck-field ck-num">
+                <label for="number">Número</label>
+                <input class="gb-input" id="number" inputmode="text" maxlength="10" placeholder="Nº">
+                <p class="ck-err" id="err-number" role="alert"></p>
+              </div>
+            </div>
+            <div class="ck-row">
+              <div class="ck-field">
+                <label for="district">Bairro</label>
+                <input class="gb-input" id="district" autocomplete="address-level3" maxlength="60" placeholder="Bairro">
+              </div>
+              <div class="ck-field">
+                <label for="complement">Complemento <small>opcional</small></label>
+                <input class="gb-input" id="complement" maxlength="40" placeholder="Apto, bloco, casa 2…">
+              </div>
+            </div>
+            <div class="ck-field">
+              <label for="ref">Ponto de referência</label>
+              <input class="gb-input" id="ref" maxlength="120" placeholder="Ex.: portão azul, ao lado da padaria">
+            </div>
+          </div>
+        </div>
+
+        <div class="ck-pickup" id="pickupBox" hidden>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0119 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+          <div><b>Retire no balcão</b><span id="storeAddress">Avisamos pelo WhatsApp quando estiver pronto.</span></div>
+        </div>
+      </section>
+
+      <!-- 3. Pagamento -->
+      <section class="ck-card" id="sec-pagamento" data-section="pagamento" aria-labelledby="pagTitle">
+        <div class="ck-card-head">
+          <h2 id="pagTitle"><span class="ck-badge">3</span> Pagamento</h2>
+          <span class="ck-done" aria-hidden="true">✓</span>
+        </div>
+        <div class="ck-pay" role="radiogroup" aria-label="Forma de pagamento">
+          <label class="ck-pay-opt">
+            <input type="radio" name="payment" value="pix">
+            <span><i class="ck-pay-ic ck-pay-pix" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 2.5l4.2 4.2-4.2 4.2-4.2-4.2zM12 13.1l4.2 4.2-4.2 4.2-4.2-4.2zM2.5 12l4.2-4.2 4.2 4.2-4.2 4.2zM13.1 12l4.2-4.2 4.2 4.2-4.2 4.2z"/></svg></i>
+              <b>Pix</b><small id="pixSub">Rápido e sem troco</small></span>
+          </label>
+          <label class="ck-pay-opt">
+            <input type="radio" name="payment" value="cartao">
+            <span><i class="ck-pay-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18M7 15h4"/></svg></i>
+              <b>Cartão</b><small>Na entrega (maquininha)</small></span>
+          </label>
+          <label class="ck-pay-opt">
+            <input type="radio" name="payment" value="dinheiro">
+            <span><i class="ck-pay-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="11" rx="2"/><circle cx="12" cy="12.5" r="2.5"/></svg></i>
+              <b>Dinheiro</b><small>Levamos troco</small></span>
+          </label>
+        </div>
+        <p class="ck-err" id="err-payment" role="alert"></p>
+
+        <div class="ck-change" id="changeBox" hidden>
+          <div class="ck-field">
+            <label for="changeFor">Troco para quanto?</label>
+            <div class="ck-money"><span>R$</span><input class="gb-input" id="changeFor" inputmode="numeric" placeholder="0,00" maxlength="10"></div>
+            <p class="ck-err" id="err-change" role="alert"></p>
+          </div>
+          <label class="ck-check"><input type="checkbox" id="noChange"><span>Não preciso de troco</span></label>
+        </div>
+
+        <div class="ck-field ck-notes">
+          <label for="notes">Observações <small>opcional</small></label>
+          <textarea class="gb-input" id="notes" rows="2" maxlength="300" placeholder="Ex.: interfone quebrado, ligar quando chegar"></textarea>
+        </div>
+      </section>
+
+      <p class="ck-legal">Ao confirmar, emitimos automaticamente a nota fiscal (NFC-e) no seu CPF.</p>
+    </form>
+  </main>
+
+  <!-- Barra fixa -->
+  <div class="ck-bar" id="bar" hidden>
+    <div class="ck-bar-total">
+      <small id="barCount">—</small>
+      <strong id="barTotal">—</strong>
+    </div>
+    <button type="submit" form="form" class="gb-btn ck-submit" id="submitBtn">
+      <span class="ck-submit-label">Confirmar pedido</span>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </button>
+  </div>
+
+  <div class="ck-toast" id="toast" role="alert" hidden></div>
+
+  <div class="ck-sending" id="sending" hidden>
+    <div class="ck-sending-box">
+      <div class="ck-flip" aria-hidden="true"><i></i><i></i><i></i></div>
+      <b>Enviando seu pedido…</b>
+      <small>Já já ele vai pra chapa!</small>
+    </div>
+  </div>
+</body>
+</html>
