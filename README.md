@@ -3,6 +3,8 @@
 Cardápio online com pedido, checkout, nota fiscal automática (NFC-e) e painel do dono.
 Roda na **Vercel** (site e API) com banco **Supabase** (Postgres e armazenamento das fotos).
 
+Site no ar: https://garage-burger-delta.vercel.app (painel do dono em `/admin/`).
+
 - **Cardápio** (`/`): as 10 categorias e os 79 itens copiados do InstaDelivery, com fotos. O cliente pode tirar ingredientes, pôr adicionais e escrever uma observação.
 - **Checkout** (`/checkout`): nome, CPF (validado), WhatsApp e localização atual (GPS) são obrigatórios. Também tem retirada no balcão e pagamento por Pix, cartão ou dinheiro com troco.
 - **Acompanhamento** (`/pedido?c=CÓDIGO`): status do pedido, QR do Pix, nota fiscal e botão do WhatsApp.
