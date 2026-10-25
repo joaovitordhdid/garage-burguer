@@ -63,7 +63,7 @@ O **NCM e o CFOP de cada produto** ficam no cadastro do produto (colunas `ncm` e
 ## 5. Como funciona no dia a dia
 
 - O cliente confirma o pedido, o sistema recalcula os valores, grava o pedido e envia a NFC-e para a Focus, que assina e transmite para a SEFAZ.
-- Se a SEFAZ demorar ("processando"), o sistema consulta de novo sozinho (3s, 6s, 12s, 24s, 48s). Depois disso, use "Reemitir nota", que primeiro consulta o status para não emitir duas vezes.
+- Se a SEFAZ demorar ("processando"), o sistema consulta de novo sempre que alguém abre o pedido (no acompanhamento ou no painel), no máximo a cada 20 segundos por nota, e a automação do painel também consulta as notas pendentes e reenvia as que deram erro (até 3 tentativas, se "reenvio automático" estiver ligado). Você também pode usar "Reemitir nota", que primeiro consulta o status para não emitir duas vezes.
 - O cliente vê o status e abre o DANFE na página do pedido (`/pedido?c=CODIGO`).
 - **Cancelamento**: a SEFAZ permite cancelar a NFC-e em até **30 minutos** após a emissão, com justificativa de 15 a 255 caracteres
   (`POST /api/orders/CODIGO/invoice/cancel` com `{ "reason": "..." }`, só para administrador). Depois desse prazo, fale com o contador.

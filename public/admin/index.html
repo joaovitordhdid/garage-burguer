@@ -46,9 +46,11 @@
       </div>
       <nav class="nav" id="nav">
         <a href="#pedidos" data-view="pedidos"><span class="nav__ico" data-icon="orders"></span><span class="nav__label">Pedidos</span><span class="nav__badge" id="badge-orders" hidden></span></a>
+        <a href="#entregas" data-view="entregas"><span class="nav__ico" data-icon="truck"></span><span class="nav__label">Entregas</span></a>
         <a href="#cardapio" data-view="cardapio"><span class="nav__ico" data-icon="menu"></span><span class="nav__label">Cardápio</span></a>
         <a href="#estoque" data-view="estoque"><span class="nav__ico" data-icon="box"></span><span class="nav__label">Estoque</span><span class="nav__badge nav__badge--warn" id="badge-stock" hidden></span></a>
         <a href="#financeiro" data-view="financeiro"><span class="nav__ico" data-icon="chart"></span><span class="nav__label">Financeiro</span></a>
+        <a href="#automacao" data-view="automacao"><span class="nav__ico" data-icon="bolt"></span><span class="nav__label">Automação</span></a>
         <a href="#config" data-view="config"><span class="nav__ico" data-icon="gear"></span><span class="nav__label">Configurações</span></a>
       </nav>
       <div class="sidebar__foot">
@@ -61,6 +63,7 @@
       <header class="topbar">
         <h2 id="view-title">Pedidos</h2>
         <div class="topbar__right">
+          <button type="button" class="auto-ind" id="auto-ind"><span class="auto-ind__dot" aria-hidden="true"></span><span class="auto-ind__label">Automação desligada</span><time class="auto-ind__time" hidden></time></button>
           <label class="store-toggle" title="Abrir ou fechar a loja para novos pedidos">
             <input type="checkbox" id="store-open">
             <span class="switch" aria-hidden="true"></span>
@@ -82,6 +85,9 @@
   <script src="/admin/js/estoque.js" defer></script>
   <script src="/admin/js/financeiro.js" defer></script>
   <script src="/admin/js/config.js" defer></script>
+  <script src="/admin/js/print.js" defer></script>
+  <script src="/admin/js/automacao.js" defer></script>
+  <script src="/admin/js/entregas.js" defer></script>
   <script src="/admin/js/main.js" defer></script>
 </body>
 </html>

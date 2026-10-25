@@ -4,7 +4,7 @@
   const A = window.GBA;
   const { h } = A;
   const $ = (s) => document.querySelector(s);
-  const TITLES = { pedidos: 'Pedidos', cardapio: 'Cardápio', estoque: 'Estoque', financeiro: 'Financeiro', config: 'Configurações' };
+  const TITLES = { pedidos: 'Pedidos', entregas: 'Entregas', automacao: 'Automação', cardapio: 'Cardápio', estoque: 'Estoque', financeiro: 'Financeiro', config: 'Configurações' };
   let current = null;
   let pollTimer = null;
   let lastOrderId = null;
@@ -14,6 +14,7 @@
   // ---------- Login ----------
   function showLogin() {
     stopPolling();
+    if (A.automation) A.automation.stop();
     $('#app').hidden = true;
     $('#login').hidden = false;
     A.closeModal();
@@ -58,6 +59,7 @@
     lastOrderId = null;
     route();
     startPolling();
+    if (A.automation) A.automation.start();
     refreshStockBadge();
   }
 
