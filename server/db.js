@@ -38,7 +38,6 @@ async function makeDriver() {
       max: Number(process.env.DATABASE_POOL_MAX || 3),
       idleTimeoutMillis: 10_000,
     });
-    pool.on('connect', c => c.query("SET TIME ZONE 'UTC'"));
     return {
       query: (sql, params) => pool.query(sql, params),
       exec: sql => pool.query(sql),

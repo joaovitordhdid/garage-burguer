@@ -12,22 +12,7 @@ const { toSvg } = require('../nfe/qr');
 
 const router = express.Router();
 
-// ---------- Esquema extra (idempotente) ----------
-// Histórico de status: um gatilho registra cada mudança, venha ela do painel ou de onde for.
-db.exec(`
-CREATE TABLE IF NOT EXISTS order_status_log (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  order_id INTEGER NOT NULL REFERENCES orders(id) ON DELETE CASCADE,
-  status TEXT NOT NULL,
-  at TEXT DEFAULT (datetime('now'))
-);
-CREATE INDEX IF NOT EXISTS idx_status_log_order ON order_status_log(order_id);
-CREATE TRIGGER IF NOT EXISTS trg_order_status_log AFTER UPDATE OF status ON orders
-WHEN NEW.status IS NOT OLD.status
-BEGIN
-  INSERT INTO order_status_log (order_id, status) VALUES (NEW.id, NEW.status);
-END;
-`);
+// Esquema: order_status_log e o gatilho que registra cada mudança de status estão em server/schema.sql.
 
 // ---------- Validações ----------
 function onlyDigits(s) { return String(s ?? '').replace(/\D/g, ''); }
@@ -62,16 +47,16 @@ const bad = (msg, field) => { throw new HttpError(400, msg, field); };
 
 const CODE_ALPHABET = '23456789ABCDEFGHJKMNPQRSTUVWXYZ'; // sem 0/O/1/I/L
 const CODE_RE = /^GB-[2-9A-HJKMNP-Z]{5}$/;
-function newCode() {
+async function newCode() {
   for (;;) {
     let c = 'GB-';
     for (let i = 0; i < 5; i++) c += CODE_ALPHABET[crypto.randomInt(CODE_ALPHABET.length)];
-    if (!db.prepare('SELECT 1 FROM orders WHERE code = ?').get(c)) return c;
+    if (!(await db.get('SELECT 1 FROM orders WHERE code = $1', [c]))) return c;
   }
 }
 
-function deliveryConfig() {
-  const d = getSetting('delivery', {}) || {};
+async function deliveryConfig() {
+  const d = (await getSetting('delivery', {})) || {};
   return {
     fee_cents: Math.max(0, parseInt(d.fee_cents, 10) || 0),
     min_order_cents: Math.max(0, parseInt(d.min_order_cents, 10) || 0),
@@ -79,12 +64,12 @@ function deliveryConfig() {
     eta_max: parseInt(d.eta_max, 10) || 50,
   };
 }
-function storeInfo() {
-  const s = getSetting('store', {}) || {};
+async function storeInfo() {
+  const s = (await getSetting('store', {})) || {};
   return { name: s.name || 'Garage Burger', open: s.open !== false && s.open !== 'false', whatsapp: s.whatsapp || '', phone: s.phone || '', address: s.address || '' };
 }
-function pixConfig() {
-  const p = getSetting('pix', null);
+async function pixConfig() {
+  const p = await getSetting('pix', null);
   return p && p.key ? p : null;
 }
 
@@ -99,11 +84,12 @@ const readLimiter = rateLimit({
 });
 
 // ---------- GET /config (público, sem segredos) ----------
-router.get('/config', (req, res) => {
+router.get('/config', async (req, res) => {
+  const [delivery, store, pix] = await Promise.all([deliveryConfig(), storeInfo(), pixConfig()]);
   res.json({
-    delivery: deliveryConfig(),
-    store: storeInfo(),
-    payment: { pix: !!pixConfig(), cartao: true, dinheiro: true },
+    delivery,
+    store,
+    payment: { pix: !!pix, cartao: true, dinheiro: true },
   });
 });
 
@@ -111,7 +97,7 @@ router.get('/config', (req, res) => {
 router.post('/', createLimiter, async (req, res, next) => {
   try {
     const b = req.body || {};
-    const store = storeInfo();
+    const store = await storeInfo();
     if (!store.open) bad('A loja está fechada agora. Volte no horário de funcionamento!');
 
     // Cliente
@@ -145,22 +131,24 @@ router.post('/', createLimiter, async (req, res, next) => {
     // Itens: tudo recalculado a partir do banco
     if (!Array.isArray(b.items) || b.items.length === 0) bad('Seu carrinho está vazio.', 'items');
     if (b.items.length > 30) bad('Pedido com itens demais. Fale com a loja pelo WhatsApp.', 'items');
-    const getProduct = db.prepare(`SELECT p.* FROM products p LEFT JOIN categories c ON c.id = p.category_id
-                                   WHERE p.id = ? AND p.active = 1 AND (c.id IS NULL OR c.active = 1)`);
-    const getRecipe = db.prepare(`SELECT pi.ingredient_id, pi.qty, i.name, i.removable, i.stock_qty
-                                  FROM product_ingredients pi JOIN ingredients i ON i.id = pi.ingredient_id WHERE pi.product_id = ?`);
-    const getAddon = db.prepare('SELECT * FROM addons WHERE id = ? AND active = 1 AND (product_id IS NULL OR product_id = ?)');
+    const getProduct = pid => db.get(`SELECT p.* FROM products p LEFT JOIN categories c ON c.id = p.category_id
+                                      WHERE p.id = $1 AND p.active = 1 AND (c.id IS NULL OR c.active = 1)`, [pid]);
+    const getRecipe = pid => db.all(`SELECT pi.ingredient_id, pi.qty, i.name, i.removable, i.stock_qty
+                                     FROM product_ingredients pi JOIN ingredients i ON i.id = pi.ingredient_id WHERE pi.product_id = $1
+                                     ORDER BY pi.ingredient_id`, [pid]);
+    const getAddon = (aid, pid) => db.get('SELECT * FROM addons WHERE id = $1 AND active = 1 AND (product_id IS NULL OR product_id = $2)', [aid, pid]);
+    const INT_MAX = 2147483647;
 
     const lines = [];
     const stockUse = new Map(); // ingredient_id -> quantidade consumida
     for (const raw of b.items) {
       const pid = Number(raw && raw.product_id);
-      const p = Number.isInteger(pid) ? getProduct.get(pid) : null;
+      const p = Number.isInteger(pid) && pid > 0 && pid <= INT_MAX ? await getProduct(pid) : null;
       if (!p) bad('Um dos itens do carrinho não está mais disponível. Atualize o carrinho.', 'items');
       const qty = Number(raw.qty);
       if (!Number.isInteger(qty) || qty < 1 || qty > 50) bad(`Quantidade inválida para ${p.name} (1 a 50).`, 'items');
 
-      const recipe = getRecipe.all(p.id);
+      const recipe = await getRecipe(p.id);
       const removable = new Map(recipe.filter(r => r.removable).map(r => [r.name.toLowerCase(), r.name]));
       const removed = [];
       for (const r of Array.isArray(raw.removed) ? raw.removed : []) {
@@ -170,7 +158,8 @@ router.post('/', createLimiter, async (req, res, next) => {
       }
       const addons = [];
       for (const aid of Array.isArray(raw.addon_ids) ? raw.addon_ids : []) {
-        const a = Number.isInteger(Number(aid)) ? getAddon.get(Number(aid), p.id) : null;
+        const n = Number(aid);
+        const a = Number.isInteger(n) && n > 0 && n <= INT_MAX ? await getAddon(n, p.id) : null;
         if (!a) bad(`Adicional inválido para ${p.name}.`, 'items');
         if (!addons.some(x => x.id === a.id)) addons.push({ id: a.id, name: a.name, price_cents: a.price_cents });
       }
@@ -183,7 +172,7 @@ router.post('/', createLimiter, async (req, res, next) => {
       lines.push({ product_id: p.id, name: p.name, qty, unit_price_cents: unit, removed, addons, notes: str(raw.notes, 140) || null });
     }
 
-    const dcfg = deliveryConfig();
+    const dcfg = await deliveryConfig();
     const subtotal = lines.reduce((s, l) => s + l.unit_price_cents * l.qty, 0);
     const fee = deliveryType === 'delivery' ? dcfg.fee_cents : 0;
     const total = subtotal + fee;
@@ -198,37 +187,39 @@ router.post('/', createLimiter, async (req, res, next) => {
     }
 
     // Grava tudo numa transação
-    const code = newCode();
-    const orderId = tx(() => {
-      const id = Number(db.prepare(`INSERT INTO orders (code, customer_name, customer_cpf, customer_phone, address, address_ref, lat, lng,
+    const code = await newCode();
+    const orderId = await tx(async (t) => {
+      const { id } = await t.get(`INSERT INTO orders (code, customer_name, customer_cpf, customer_phone, address, address_ref, lat, lng,
           delivery_type, payment_method, change_for_cents, notes, subtotal_cents, delivery_fee_cents, total_cents, status)
-          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'recebido')`)
-        .run(code, name, cpf, phone, address, addressRef, lat, lng, deliveryType, payment, changeFor, notes, subtotal, fee, total).lastInsertRowid);
-      const insItem = db.prepare(`INSERT INTO order_items (order_id, product_id, name, qty, unit_price_cents, removed, addons, notes)
-                                  VALUES (?, ?, ?, ?, ?, ?, ?, ?)`);
+          VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, 'recebido') RETURNING id`,
+        [code, name, cpf, phone, address, addressRef, lat, lng, deliveryType, payment, changeFor, notes, subtotal, fee, total]);
       for (const l of lines) {
-        insItem.run(id, l.product_id, l.name, l.qty, l.unit_price_cents, JSON.stringify(l.removed),
-          JSON.stringify(l.addons.map(a => ({ id: a.id, name: a.name, price_cents: a.price_cents }))), l.notes);
+        await t.run(`INSERT INTO order_items (order_id, product_id, name, qty, unit_price_cents, removed, addons, notes)
+                     VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`,
+          [id, l.product_id, l.name, l.qty, l.unit_price_cents, JSON.stringify(l.removed),
+            JSON.stringify(l.addons.map(a => ({ id: a.id, name: a.name, price_cents: a.price_cents }))), l.notes]);
       }
-      const dec = db.prepare('UPDATE ingredients SET stock_qty = stock_qty - ? WHERE id = ?');
-      const mov = db.prepare("INSERT INTO stock_movements (ingredient_id, delta, reason, order_id) VALUES (?, ?, 'pedido', ?)");
-      for (const [ingId, used] of stockUse) { dec.run(used, ingId); mov.run(ingId, -used, id); }
-      db.prepare("INSERT INTO transactions (type, category, description, amount_cents, order_id, date) VALUES ('receita', 'Vendas', ?, ?, ?, date('now', '-3 hours'))")
-        .run(`Pedido ${code}`, total, id);
-      db.prepare("INSERT INTO order_status_log (order_id, status) VALUES (?, 'recebido')").run(id);
+      for (const [ingId, used] of stockUse) {
+        await t.run('UPDATE ingredients SET stock_qty = stock_qty - $1 WHERE id = $2', [used, ingId]);
+        await t.run("INSERT INTO stock_movements (ingredient_id, delta, reason, order_id) VALUES ($1, $2, 'pedido', $3)", [ingId, -used, id]);
+      }
+      await t.run(`INSERT INTO transactions (type, category, description, amount_cents, order_id, date)
+                   VALUES ('receita', 'Vendas', $1, $2, $3, (now() AT TIME ZONE 'America/Sao_Paulo')::date)`, [`Pedido ${code}`, total, id]);
+      await t.run("INSERT INTO order_status_log (order_id, status) VALUES ($1, 'recebido')", [id]);
       return id;
     });
 
-    // Nota fiscal (falha nunca derruba o pedido)
+    // Nota fiscal (falha nunca derruba o pedido). Na Vercel não há trabalho em segundo plano:
+    // esperamos a resposta do emissor aqui; se ficar "processando", a consulta acontece na próxima leitura.
     let invoice = null;
     try {
-      if (nfe.getConfig().auto_emit) invoice = await nfe.emitForOrder(orderId);
+      if ((await nfe.getConfig()).auto_emit) invoice = await nfe.emitForOrder(orderId);
     } catch (e) { console.error('[nfe]', e); }
 
     res.status(201).json({
       code, status: 'recebido', subtotal_cents: subtotal, delivery_fee_cents: fee, total_cents: total,
-      invoice: nfe.publicInvoice(invoice),
-      pix: payment === 'pix' ? pixFor({ code, total_cents: total }) : null,
+      invoice: await nfe.publicInvoice(invoice),
+      pix: payment === 'pix' ? await pixFor({ code, total_cents: total }) : null,
     });
   } catch (e) {
     if (e instanceof HttpError) return res.status(e.status).json({ error: e.message, field: e.field });
@@ -236,8 +227,8 @@ router.post('/', createLimiter, async (req, res, next) => {
   }
 });
 
-function pixFor(order) {
-  const cfg = pixConfig();
+async function pixFor(order) {
+  const cfg = await pixConfig();
   if (!cfg) return { enabled: false, message: 'Pagamento via Pix na entrega/retirada (QR na maquininha ou chave da loja).' };
   const payload = buildPayload({ key: cfg.key, merchant_name: cfg.merchant_name, city: cfg.city, amount_cents: order.total_cents, txid: order.code });
   if (!payload) return { enabled: false };
@@ -247,21 +238,29 @@ function pixFor(order) {
 // ---------- Leitura pública por código ----------
 const STATUS_LABEL = { recebido: 'Recebido', preparo: 'Em preparo', saiu: 'Saiu para entrega', entregue: 'Entregue', cancelado: 'Cancelado' };
 
-function findOrder(code) {
+async function findOrder(code) {
   const c = String(code || '').toUpperCase();
   if (!CODE_RE.test(c)) return null;
-  return db.prepare('SELECT * FROM orders WHERE code = ?').get(c) || null;
+  return (await db.get('SELECT * FROM orders WHERE code = $1', [c])) || null;
 }
 
-router.get('/:code', readLimiter, (req, res) => {
-  const o = findOrder(req.params.code);
+router.get('/:code', readLimiter, async (req, res) => {
+  const o = await findOrder(req.params.code);
   if (!o) return res.status(404).json({ error: 'Pedido não encontrado. Confira o código.' });
-  const items = db.prepare('SELECT * FROM order_items WHERE order_id = ? ORDER BY id').all(o.id).map(i => ({
+  // Nota "processando": consulta o emissor (no máximo a cada 20 s por nota)
+  const inv = await nfe.refreshIfStale(await nfe.latestInvoice(o.id));
+  const [itemRows, timeline, store, eta, invoice, pix] = await Promise.all([
+    db.all('SELECT * FROM order_items WHERE order_id = $1 ORDER BY id', [o.id]),
+    db.all('SELECT status, at FROM order_status_log WHERE order_id = $1 ORDER BY id', [o.id]),
+    storeInfo(),
+    deliveryConfig(),
+    nfe.publicInvoice(inv),
+    o.payment_method === 'pix' && o.status !== 'cancelado' ? pixFor(o) : null,
+  ]);
+  const items = itemRows.map(i => ({
     name: i.name, qty: i.qty, unit_price_cents: i.unit_price_cents,
     removed: safeJson(i.removed, []), addons: safeJson(i.addons, []).map(a => ({ name: a.name, price_cents: a.price_cents })), notes: i.notes,
   }));
-  const timeline = db.prepare('SELECT status, at FROM order_status_log WHERE order_id = ? ORDER BY id').all(o.id);
-  const store = storeInfo();
   const phone = String(o.customer_phone || '');
   res.set('Cache-Control', 'no-store');
   res.json({
@@ -272,54 +271,54 @@ router.get('/:code', readLimiter, (req, res) => {
     customer: { first_name: String(o.customer_name).split(' ')[0], cpf_masked: maskCpf(o.customer_cpf), phone_masked: phone.length >= 4 ? `(${phone.slice(0, 2)}) •••••-${phone.slice(-4)}` : '' },
     address: o.delivery_type === 'delivery' ? o.address : null,
     notes: o.notes, items,
-    eta: deliveryConfig(),
-    invoice: nfe.publicInvoice(nfe.latestInvoice(o.id)),
-    pix: o.payment_method === 'pix' && o.status !== 'cancelado' ? pixFor(o) : null,
+    eta,
+    invoice,
+    pix,
     store: { name: store.name, whatsapp: store.whatsapp, phone: store.phone },
   });
 });
 
-router.get('/:code/pix.svg', readLimiter, (req, res) => {
-  const o = findOrder(req.params.code);
-  const pix = o && o.payment_method === 'pix' ? pixFor(o) : null;
+router.get('/:code/pix.svg', readLimiter, async (req, res) => {
+  const o = await findOrder(req.params.code);
+  const pix = o && o.payment_method === 'pix' ? await pixFor(o) : null;
   if (!pix || !pix.enabled) return res.status(404).type('text/plain').send('Pix indisponível');
   res.type('image/svg+xml').set('Cache-Control', 'private, max-age=300').send(toSvg(pix.copia_e_cola));
 });
 
-router.get('/:code/danfe', readLimiter, (req, res) => {
-  const o = findOrder(req.params.code);
+router.get('/:code/danfe', readLimiter, async (req, res) => {
+  const o = await findOrder(req.params.code);
   if (!o) return res.status(404).type('html').send('<!doctype html><meta charset="utf-8"><title>Nota não encontrada</title><p>Pedido não encontrado.</p>');
-  const inv = nfe.latestInvoice(o.id);
+  const inv = await nfe.refreshIfStale(await nfe.latestInvoice(o.id));
   if (!inv || !['autorizada', 'cancelada'].includes(inv.status)) {
     return res.status(404).type('html').send(`<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Nota fiscal</title>
       <body style="font-family:system-ui;background:#0d0d0f;color:#f4f1ea;padding:24px"><p>A nota fiscal deste pedido ainda não foi autorizada${inv && inv.status === 'processando' ? ' (processando na SEFAZ)' : ''}.</p>
       <p><a style="color:#ffb000" href="/pedido?c=${o.code}">Voltar ao pedido</a></p></body>`);
   }
   if (inv.provider !== 'mock' && inv.danfe_url && /^https:\/\//.test(inv.danfe_url)) return res.redirect(302, inv.danfe_url);
-  const { items } = nfe.loadDoc(o.id);
+  const [{ items }, store, cfg] = await Promise.all([nfe.loadDoc(o.id), getSetting('store', {}), nfe.getConfig()]);
   res.type('html').set('Cache-Control', 'no-store')
-    .send(renderDanfe({ order: o, items, invoice: inv, store: getSetting('store', {}) || {}, cfg: nfe.getConfig() }));
+    .send(renderDanfe({ order: o, items, invoice: inv, store: store || {}, cfg }));
 });
 
 // ---------- Somente painel ----------
 router.post('/:code/invoice/retry', requireAdmin, async (req, res, next) => {
   try {
-    const o = findOrder(req.params.code);
+    const o = await findOrder(req.params.code);
     if (!o) return res.status(404).json({ error: 'Pedido não encontrado' });
     const inv = await nfe.retryForOrder(o.id);
-    res.json({ invoice: nfe.publicInvoice(inv) });
+    res.json({ invoice: await nfe.publicInvoice(inv) });
   } catch (e) { next(e); }
 });
 
 router.post('/:code/invoice/cancel', requireAdmin, async (req, res, next) => {
   try {
-    const o = findOrder(req.params.code);
+    const o = await findOrder(req.params.code);
     if (!o) return res.status(404).json({ error: 'Pedido não encontrado' });
     const reason = str(req.body && req.body.reason, 255);
     if (reason.length < 15) return res.status(400).json({ error: 'A justificativa precisa ter pelo menos 15 caracteres.' });
     const r = await nfe.cancelForOrder(o.id, reason);
     if (r.error) return res.status(422).json({ error: r.error });
-    res.json({ invoice: nfe.publicInvoice(r.invoice) });
+    res.json({ invoice: await nfe.publicInvoice(r.invoice) });
   } catch (e) { next(e); }
 });
 

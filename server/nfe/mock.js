@@ -20,8 +20,9 @@ function accessKey({ uf = '35', cnpj, series, number, date = new Date() }) {
   return base + mod11(base);
 }
 
-function nextNumber() {
-  const row = db.prepare("SELECT MAX(CAST(number AS INTEGER)) AS n FROM invoices WHERE provider = 'mock'").get();
+async function nextNumber() {
+  const row = await db.get(`SELECT MAX(NULLIF(regexp_replace(number, '\\D', '', 'g'), '')::bigint) AS n
+                            FROM invoices WHERE provider = 'mock'`);
   return (row && row.n ? row.n : 0) + 1;
 }
 
@@ -29,7 +30,7 @@ function createMockProvider(cfg) {
   return {
     name: 'mock',
     async emit(doc) {
-      const number = nextNumber();
+      const number = await nextNumber();
       const series = '1';
       const key = accessKey({ uf: cfg.uf_code, cnpj: cfg.cnpj || '00000000000191', series, number });
       return {

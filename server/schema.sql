@@ -1,6 +1,10 @@
 -- Garage Burger: esquema Postgres (Supabase). Idempotente: pode rodar várias vezes.
 -- Valores em centavos (*_cents). Datas em timestamptz (UTC); a API devolve 'YYYY-MM-DD HH:MM:SS' em UTC.
 
+-- Trava: se duas instâncias da Vercel subirem juntas, uma espera a outra terminar este arquivo
+-- (os comandos abaixo rodam numa única transação implícita).
+SELECT pg_advisory_xact_lock(797978);
+
 CREATE TABLE IF NOT EXISTS settings (
   key TEXT PRIMARY KEY,
   value TEXT
@@ -56,8 +60,10 @@ CREATE TABLE IF NOT EXISTS product_ingredients (
   product_id INTEGER NOT NULL REFERENCES products(id) ON DELETE CASCADE,
   ingredient_id INTEGER NOT NULL REFERENCES ingredients(id) ON DELETE CASCADE,
   qty DOUBLE PRECISION DEFAULT 1,
+  position INTEGER DEFAULT 0,  -- ordem do ingrediente na receita (como aparece no cardápio)
   PRIMARY KEY (product_id, ingredient_id)
 );
+ALTER TABLE product_ingredients ADD COLUMN IF NOT EXISTS position INTEGER DEFAULT 0;
 
 CREATE TABLE IF NOT EXISTS addons (
   id SERIAL PRIMARY KEY,
@@ -116,9 +122,12 @@ CREATE TABLE IF NOT EXISTS invoices (
   xml_url TEXT,
   qrcode_url TEXT,
   message TEXT,
-  created_at TIMESTAMPTZ DEFAULT now()
+  created_at TIMESTAMPTZ DEFAULT now(),
+  updated_at TIMESTAMPTZ DEFAULT now()  -- última gravação/consulta ao emissor (limita a consulta a cada 20 s)
 );
+ALTER TABLE invoices ADD COLUMN IF NOT EXISTS updated_at TIMESTAMPTZ DEFAULT now();
 CREATE INDEX IF NOT EXISTS idx_invoices_order ON invoices(order_id);
+CREATE INDEX IF NOT EXISTS idx_invoices_status ON invoices(status);
 
 CREATE TABLE IF NOT EXISTS transactions (
   id SERIAL PRIMARY KEY,
@@ -157,7 +166,7 @@ BEGIN
   END IF;
   RETURN NEW;
 END;
-$$ LANGUAGE plpgsql;
+$$ LANGUAGE plpgsql SET search_path = public;
 
 DROP TRIGGER IF EXISTS trg_order_status_log ON orders;
 CREATE TRIGGER trg_order_status_log AFTER UPDATE OF status ON orders
@@ -178,3 +187,31 @@ ALTER TABLE invoices ENABLE ROW LEVEL SECURITY;
 ALTER TABLE transactions ENABLE ROW LEVEL SECURITY;
 ALTER TABLE stock_movements ENABLE ROW LEVEL SECURITY;
 ALTER TABLE order_status_log ENABLE ROW LEVEL SECURITY;
+
+-- Automação do painel (aceite, impressão, despacho) e rotas de entrega.
+-- server/routes/automation.js também garante isso sozinho, caso este arquivo esteja desatualizado.
+ALTER TABLE orders ADD COLUMN IF NOT EXISTS accepted_at TIMESTAMPTZ;
+ALTER TABLE orders ADD COLUMN IF NOT EXISTS printed_at TIMESTAMPTZ;
+ALTER TABLE orders ADD COLUMN IF NOT EXISTS print_claimed_at TIMESTAMPTZ;
+ALTER TABLE orders ADD COLUMN IF NOT EXISTS danfe_printed_at TIMESTAMPTZ;
+ALTER TABLE orders ADD COLUMN IF NOT EXISTS danfe_claimed_at TIMESTAMPTZ;
+ALTER TABLE orders ADD COLUMN IF NOT EXISTS dispatched_at TIMESTAMPTZ;
+
+CREATE TABLE IF NOT EXISTS delivery_routes (
+  id SERIAL PRIMARY KEY,
+  token TEXT UNIQUE NOT NULL,
+  driver_name TEXT,
+  created_at TIMESTAMPTZ DEFAULT now(),
+  finished_at TIMESTAMPTZ
+);
+CREATE TABLE IF NOT EXISTS delivery_route_stops (
+  route_id INTEGER NOT NULL REFERENCES delivery_routes(id) ON DELETE CASCADE,
+  order_id INTEGER NOT NULL REFERENCES orders(id) ON DELETE CASCADE,
+  position INTEGER NOT NULL,
+  delivered_at TIMESTAMPTZ,
+  PRIMARY KEY (route_id, order_id)
+);
+CREATE INDEX IF NOT EXISTS idx_route_stops_order ON delivery_route_stops(order_id);
+CREATE INDEX IF NOT EXISTS idx_routes_finished ON delivery_routes(finished_at);
+ALTER TABLE delivery_routes ENABLE ROW LEVEL SECURITY;
+ALTER TABLE delivery_route_stops ENABLE ROW LEVEL SECURITY;

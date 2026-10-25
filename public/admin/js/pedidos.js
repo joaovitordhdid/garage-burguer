@@ -102,6 +102,15 @@
           ? h('button.btn-text.small', { type: 'button', on: { click: (e) => retryInvoice(o, e.currentTarget) } }, inv ? 'Reemitir nota' : 'Emitir nota') : null,
         inv && inv.status === 'autorizada'
           ? h('button.btn-text.small.danger', { type: 'button', on: { click: () => cancelInvoice(o) } }, 'Cancelar nota') : null),
+      h('div.order__print',
+        A.icon('print'),
+        h('span.muted', 'Imprimir:'),
+        h('button.btn-text.small', { type: 'button', on: { click: () => A.printer.order(o, 'cozinha') } }, 'Cozinha'),
+        h('button.btn-text.small', { type: 'button', on: { click: () => A.printer.order(o, 'entrega') } }, o.delivery_type === 'retirada' ? 'Balcão' : 'Entrega'),
+        inv && inv.status === 'autorizada' ? h('button.btn-text.small', { type: 'button', on: { click: () => A.printer.order(o, 'nota') } }, 'Nota') : null,
+        h('span.spacer'),
+        o.printed_at ? h('span.tag.tag--ok', { title: 'Cupom impresso' }, 'impresso') : null,
+        o.status === 'saiu' && o.delivery_type === 'delivery' && notifyUrl(o) ? h('a.link.small', { href: notifyUrl(o), target: '_blank', rel: 'noopener' }, 'Avisar cliente ↗') : null),
       o.timeline && o.timeline.length > 1 ? h('div.timeline', o.timeline.map(t => h('span', h('b', statusLabel(o, t.status)), ' ', A.fmtTime(t.at_local)))) : null,
       h('footer.order__actions',
         step ? h('button.gb-btn.btn-sm', { type: 'button', on: { click: (e) => setStatus(o, step[0], e.currentTarget) } }, A.icon('check'), step[1]) : null,
@@ -145,6 +154,24 @@
     A.openModal(`Cancelar NFC-e do pedido ${o.code}`, form);
   }
 
+  // Mensagem "saiu para entrega" (o dono só toca em enviar no WhatsApp)
+  function notifyUrl(o) {
+    const s = A.automation && A.automation.settings;
+    if (s && s.notify_whatsapp === false) return null;
+    const d = String(o.customer_phone || '').replace(/\D/g, '').replace(/^55(?=\d{10,11}$)/, '');
+    if (d.length < 10) return null;
+    const store = (A.state.settings && A.state.settings.store && A.state.settings.store.name) || 'Garage Burger';
+    const change = o.payment_method === 'dinheiro' && o.change_for_cents > o.total_cents ? o.change_for_cents - o.total_cents : 0;
+    const text = [
+      `Olá, ${String(o.customer_name).split(' ')[0]}! Seu pedido ${o.code} da ${store} saiu para entrega e já está a caminho.`,
+      `Total: ${A.money(o.total_cents)} (${PAY[o.payment_method] || o.payment_method}).`,
+      change ? `Vamos levar ${A.money(change)} de troco.` : null,
+      `Acompanhe: ${location.origin}/pedido?c=${o.code}`,
+    ].filter(Boolean).join('\n');
+    return `https://wa.me/55${d}?text=${encodeURIComponent(text)}`;
+  }
+  A.notifyUrl = notifyUrl;
+
   function formatPhone(d) {
     if (d.length === 11) return `(${d.slice(0, 2)}) ${d.slice(2, 7)}-${d.slice(7)}`;
     if (d.length === 10) return `(${d.slice(0, 2)}) ${d.slice(2, 6)}-${d.slice(6)}`;
@@ -161,6 +188,13 @@
       await A.api(`/api/admin/orders/${o.id}/status`, { method: 'PUT', body: { status } });
       if (A.newOrderIds) A.newOrderIds.delete(o.id);
       A.toast(`${o.code}: ${statusLabel(o, status)}`);
+      if (status === 'saiu' && o.delivery_type === 'delivery' && notifyUrl(o)) {
+        const box = document.getElementById('toasts');
+        const t = h('div.toast.toast--new', { role: 'status' }, h('div', `${o.code} saiu para entrega`),
+          h('a.gb-btn.btn-sm.toast__btn', { href: notifyUrl(o), target: '_blank', rel: 'noopener', on: { click: () => setTimeout(() => t.remove(), 300) } }, 'Avisar cliente no WhatsApp'));
+        box.appendChild(t);
+        setTimeout(() => { t.classList.add('toast--out'); setTimeout(() => t.remove(), 300); }, 15000);
+      }
       A.pollNow();
       load();
     } catch (e) { A.fail(e); if (el) { el.disabled = false; if (el.tagName === 'SELECT') el.value = o.status; } }

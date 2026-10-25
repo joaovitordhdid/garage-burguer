@@ -2,16 +2,16 @@
   "name": "garage-burger",
   "version": "1.0.0",
   "private": true,
-  "description": "Cardápio digital, checkout, NFC-e e painel do dono da Garage Burger",
+  "description": "Cardápio digital, checkout, NFC-e e painel do dono da Garage Burger (Vercel + Supabase)",
   "main": "server.js",
   "scripts": {
     "start": "node --no-warnings server.js",
     "dev": "node --no-warnings --watch server.js",
-    "reset-db": "rm -rf data && echo banco apagado",
+    "reset-db": "rm -rf data && echo banco local apagado",
     "demo": "node demo/build.js"
   },
   "engines": {
-    "node": ">=22.5"
+    "node": "22.x"
   },
   "dependencies": {
     "bcryptjs": "^3.0.3",

@@ -119,12 +119,12 @@ function createFocusProvider(cfg) {
   const base = BASES[cfg.mode === 'producao' ? 'producao' : 'homologacao'];
   const auth = 'Basic ' + Buffer.from(`${cfg.token}:`).toString('base64');
 
-  async function call(method, path, body) {
+  async function call(method, path, body, timeoutMs = 25000) {
     const res = await fetch(base + path, {
       method,
       headers: { Authorization: auth, 'Content-Type': 'application/json', Accept: 'application/json' },
       body: body ? JSON.stringify(body) : undefined,
-      signal: AbortSignal.timeout(25000),
+      signal: AbortSignal.timeout(timeoutMs),
     });
     let json = null;
     try { json = await res.json(); } catch {}
@@ -135,12 +135,12 @@ function createFocusProvider(cfg) {
     name: 'focusnfe',
     base,
     buildBody: doc => buildBody(doc, cfg),
-    async emit(doc) {
-      const { httpStatus, json } = await call('POST', `/v2/nfce?ref=${encodeURIComponent(doc.ref)}`, buildBody(doc, cfg));
+    async emit(doc, { timeoutMs } = {}) {
+      const { httpStatus, json } = await call('POST', `/v2/nfce?ref=${encodeURIComponent(doc.ref)}`, buildBody(doc, cfg), timeoutMs);
       return mapResponse(json, base, httpStatus);
     },
-    async status(ref) {
-      const { httpStatus, json } = await call('GET', `/v2/nfce/${encodeURIComponent(ref)}`);
+    async status(ref, { timeoutMs } = {}) {
+      const { httpStatus, json } = await call('GET', `/v2/nfce/${encodeURIComponent(ref)}`, undefined, timeoutMs);
       return mapResponse(json, base, httpStatus);
     },
     async cancel(ref, reason) {
